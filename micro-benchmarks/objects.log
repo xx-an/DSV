@@ -1,0 +1,2641 @@
+The following registers are set to symbolic value: ['rax', 'rbx', 'rcx', 'rdx', 'rsp', 'rbp', 'rsi', 'rdi', 'r8', 'r9', 'r10', 'r11', 'r12', 'r13', 'r14', 'r15']
+register:{
+rax: a,
+rbx: b,
+rcx: c,
+rdx: d,
+rsp: e,
+rbp: f,
+rsi: g,
+rdi: h,
+r8: i,
+r9: j,
+r10: k,
+r11: l,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x610: xor ebp,ebp
+register:{
+rax: a,
+rbx: b,
+rcx: c,
+rdx: d,
+rsp: e,
+rbp: 0x0,
+rsi: g,
+rdi: h,
+r8: i,
+r9: j,
+r10: k,
+r11: l,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x612: mov r9,rdx
+register:{
+rax: a,
+rbx: b,
+rcx: c,
+rdx: d,
+rsp: e,
+rbp: 0x0,
+rsi: g,
+rdi: h,
+r8: i,
+r9: d,
+r10: k,
+r11: l,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x615: pop rsi
+register:{
+rax: a,
+rbx: b,
+rcx: c,
+rdx: d,
+rsp: 8 + e,
+rbp: 0x0,
+rsi: q,
+rdi: h,
+r8: i,
+r9: d,
+r10: k,
+r11: l,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x616: mov rdx,rsp
+register:{
+rax: a,
+rbx: b,
+rcx: c,
+rdx: 8 + e,
+rsp: 8 + e,
+rbp: 0x0,
+rsi: q,
+rdi: h,
+r8: i,
+r9: d,
+r10: k,
+r11: l,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x619: and rsp,0xfffffffffffffff0
+register:{
+rax: a,
+rbx: b,
+rcx: c,
+rdx: 8 + e,
+rsp: Concat(Extract(63, 4, 8 + e), 0),
+rbp: 0x0,
+rsi: q,
+rdi: h,
+r8: i,
+r9: d,
+r10: k,
+r11: l,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x61d: push rax
+register:{
+rax: a,
+rbx: b,
+rcx: c,
+rdx: 8 + e,
+rsp: 18446744073709551608 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 0x0,
+rsi: q,
+rdi: h,
+r8: i,
+r9: d,
+r10: k,
+r11: l,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x61e: push rsp
+register:{
+rax: a,
+rbx: b,
+rcx: c,
+rdx: 8 + e,
+rsp: 18446744073709551600 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 0x0,
+rsi: q,
+rdi: h,
+r8: i,
+r9: d,
+r10: k,
+r11: l,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x61f: lea r8,[rip+0x32a]
+register:{
+rax: a,
+rbx: b,
+rcx: c,
+rdx: 8 + e,
+rsp: 18446744073709551600 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 0x0,
+rsi: q,
+rdi: h,
+r8: 0x950,
+r9: d,
+r10: k,
+r11: l,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x626: lea rcx,[rip+0x2b3]
+register:{
+rax: a,
+rbx: b,
+rcx: 0x8e0,
+rdx: 8 + e,
+rsp: 18446744073709551600 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 0x0,
+rsi: q,
+rdi: h,
+r8: 0x950,
+r9: d,
+r10: k,
+r11: l,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x62d: lea rdi,[rip+0x25c]
+register:{
+rax: a,
+rbx: b,
+rcx: 0x8e0,
+rdx: 8 + e,
+rsp: 18446744073709551600 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 0x0,
+rsi: q,
+rdi: 0x890,
+r8: 0x950,
+r9: d,
+r10: k,
+r11: l,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x634: call qword ptr [rip+0x2009a6]
+register:{
+rax: a,
+rbx: b,
+rcx: 0x8e0,
+rdx: 8 + e,
+rsp: 18446744073709551600 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 0x0,
+rsi: q,
+rdi: 0x890,
+r8: 0x950,
+r9: d,
+r10: k,
+r11: l,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+Jump address is : 0x200fe0
+
+Execute the external function: __libc_start_main
+
+The following registers are set to symbolic value: ['rcx', 'rdx', 'rsi', 'rdi', 'r8', 'r9', 'r10', 'r11']
+0x890: push rbp
+register:{
+rax: 0x890,
+rbx: b,
+rcx: r,
+rdx: s,
+rsp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: r,
+rsi: t,
+rdi: u,
+r8: v,
+r9: w,
+r10: y,
+r11: z,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x891: mov rbp,rsp
+register:{
+rax: 0x890,
+rbx: b,
+rcx: r,
+rdx: s,
+rsp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: t,
+rdi: u,
+r8: v,
+r9: w,
+r10: y,
+r11: z,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x894: sub rsp,0x20
+register:{
+rax: 0x890,
+rbx: b,
+rcx: r,
+rdx: s,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: t,
+rdi: u,
+r8: v,
+r9: w,
+r10: y,
+r11: z,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x898: mov dword ptr [rbp-0x14],edi
+register:{
+rax: 0x890,
+rbx: b,
+rcx: r,
+rdx: s,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: t,
+rdi: u,
+r8: v,
+r9: w,
+r10: y,
+r11: z,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x89b: mov qword ptr [rbp-0x20],rsi
+register:{
+rax: 0x890,
+rbx: b,
+rcx: r,
+rdx: s,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: t,
+rdi: u,
+r8: v,
+r9: w,
+r10: y,
+r11: z,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x89f: mov eax,0x0
+register:{
+rax: 0x0,
+rbx: b,
+rcx: r,
+rdx: s,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: t,
+rdi: u,
+r8: v,
+r9: w,
+r10: y,
+r11: z,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x8a4: call 0x836
+register:{
+rax: 0x0,
+rbx: b,
+rcx: r,
+rdx: s,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: t,
+rdi: u,
+r8: v,
+r9: w,
+r10: y,
+r11: z,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+Jump address is : 0x836
+
+0x836: push rbp
+register:{
+rax: 0x0,
+rbx: b,
+rcx: r,
+rdx: s,
+rsp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: t,
+rdi: u,
+r8: v,
+r9: w,
+r10: y,
+r11: z,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x837: mov rbp,rsp
+register:{
+rax: 0x0,
+rbx: b,
+rcx: r,
+rdx: s,
+rsp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: t,
+rdi: u,
+r8: v,
+r9: w,
+r10: y,
+r11: z,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x83a: mov edi,0x20
+register:{
+rax: 0x0,
+rbx: b,
+rcx: r,
+rdx: s,
+rsp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: t,
+rdi: 0x20,
+r8: v,
+r9: w,
+r10: y,
+r11: z,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+0x83f: call 0x5f0
+register:{
+rax: 0x0,
+rbx: b,
+rcx: r,
+rdx: s,
+rsp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: t,
+rdi: 0x20,
+r8: v,
+r9: w,
+r10: y,
+r11: z,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+}
+
+Jump address is : 0x5f0
+
+Execute the external function: undefined
+
+The return address is 0x844
+Jump to an undefined external address 1520 at address 0x83f
+0x844: pop rbp
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: cb,
+rsp: 18446744073709551544 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: eb,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x844,
+}
+
+0x845: ret
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: cb,
+rsp: 18446744073709551544 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: eb,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x844,
+}
+
+The return address is 0x8a9
+0x8a9: mov rdi,rax
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: cb,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x8ac: call 0x846
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: cb,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+Jump address is : 0x846
+
+0x846: push rbp
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: cb,
+rsp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x847: mov rbp,rsp
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: cb,
+rsp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x84a: sub rsp,0x8
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: cb,
+rsp: 18446744073709551528 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x84e: mov qword ptr [rbp-0x8],rdi
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: cb,
+rsp: 18446744073709551528 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x852: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: cb,
+rsp: 18446744073709551528 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x856: mov rdi,rax
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: cb,
+rsp: 18446744073709551528 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x859: call 0x773
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: cb,
+rsp: 18446744073709551528 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+Jump address is : 0x773
+
+0x773: push rbp
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: cb,
+rsp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x774: mov rbp,rsp
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: cb,
+rsp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x777: mov qword ptr [rbp-0x8],rdi
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: cb,
+rsp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x77b: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: cb,
+rsp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x77f: lea rdx,[rip+0xffffffffffffff94]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x71a,
+rsp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x786: mov qword ptr [rax],rdx
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x71a,
+rsp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x789: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x71a,
+rsp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x78d: lea rdx,[rip+0xffffffffffffffb1]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x745,
+rsp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x794: mov qword ptr [rax+0x8],rdx
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x745,
+rsp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x798: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x745,
+rsp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x79c: lea rdx,[rip+0x1e3]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x986,
+rsp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x7a3: mov qword ptr [rax+0x10],rdx
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x986,
+rsp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x7a7: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x986,
+rsp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x7ab: pop rbp
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x986,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+0x7ac: ret
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x986,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8a9,
+}
+
+The return address is 0x85e
+0x85e: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x986,
+rsp: 18446744073709551528 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x85e,
+}
+
+0x862: lea rdx,[rip+0x146]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x9af,
+rsp: 18446744073709551528 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x85e,
+}
+
+0x869: mov qword ptr [rax+0x18],rdx
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x9af,
+rsp: 18446744073709551528 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x85e,
+}
+
+0x86d: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x9af,
+rsp: 18446744073709551528 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x85e,
+}
+
+0x871: lea rdx,[rip+0xffffffffffffff61]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x7d9,
+rsp: 18446744073709551528 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x85e,
+}
+
+0x878: mov qword ptr [rax],rdx
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x7d9,
+rsp: 18446744073709551528 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x85e,
+}
+
+0x87b: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x7d9,
+rsp: 18446744073709551528 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x85e,
+}
+
+0x87f: lea rdx,[rip+0xffffffffffffff86]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x80c,
+rsp: 18446744073709551528 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x85e,
+}
+
+0x886: mov qword ptr [rax+0x8],rdx
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x80c,
+rsp: 18446744073709551528 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x85e,
+}
+
+0x88a: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x80c,
+rsp: 18446744073709551528 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x85e,
+}
+
+0x88e: leave
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x80c,
+rsp: 18446744073709551544 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x85e,
+}
+
+0x88f: ret
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x80c,
+rsp: 18446744073709551544 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x85e,
+}
+
+The return address is 0x8b1
+0x8b1: mov qword ptr [rbp-0x8],rax
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x80c,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x8b5: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x80c,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x8b9: mov rax,qword ptr [rax]
+register:{
+rax: 0x7d9,
+rbx: b,
+rcx: bb,
+rdx: 0x80c,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x8bc: mov rdx,qword ptr [rbp-0x8]
+register:{
+rax: 0x7d9,
+rbx: b,
+rcx: bb,
+rdx: ab,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x8c0: mov rdi,rdx
+register:{
+rax: 0x7d9,
+rbx: b,
+rcx: bb,
+rdx: ab,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x8c3: call rax
+register:{
+rax: 0x7d9,
+rbx: b,
+rcx: bb,
+rdx: ab,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+Jump address is : 0x7d9
+
+0x7d9: push rbp
+register:{
+rax: 0x7d9,
+rbx: b,
+rcx: bb,
+rdx: ab,
+rsp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x7da: mov rbp,rsp
+register:{
+rax: 0x7d9,
+rbx: b,
+rcx: bb,
+rdx: ab,
+rsp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x7dd: sub rsp,0x10
+register:{
+rax: 0x7d9,
+rbx: b,
+rcx: bb,
+rdx: ab,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x7e1: mov qword ptr [rbp-0x8],rdi
+register:{
+rax: 0x7d9,
+rbx: b,
+rcx: bb,
+rdx: ab,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x7e5: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: ab,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x7e9: mov rdx,qword ptr [rax+0x10]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x986,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x7ed: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: bb,
+rdx: 0x986,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x7f1: mov rax,qword ptr [rax+0x18]
+register:{
+rax: 0x9af,
+rbx: b,
+rcx: bb,
+rdx: 0x986,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: db,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x7f5: mov rsi,rax
+register:{
+rax: 0x9af,
+rbx: b,
+rcx: bb,
+rdx: 0x986,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: 0x9af,
+rdi: ab,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x7f8: lea rdi,[rip+0x191]
+register:{
+rax: 0x9af,
+rbx: b,
+rcx: bb,
+rdx: 0x986,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: 0x9af,
+rdi: 0x990,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x7ff: mov eax,0x0
+register:{
+rax: 0x0,
+rbx: b,
+rcx: bb,
+rdx: 0x986,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: 0x9af,
+rdi: 0x990,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+0x804: call 0x5e0
+register:{
+rax: 0x0,
+rbx: b,
+rcx: bb,
+rdx: 0x986,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: 0x9af,
+rdi: 0x990,
+r8: fb,
+r9: gb,
+r10: hb,
+r11: ib,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8b1,
+}
+
+Jump address is : 0x5e0
+
+Execute the external function: undefined
+
+The return address is 0x809
+Jump to an undefined external address 1504 at address 0x804
+0x809: nop
+register:{
+rax: jb,
+rbx: b,
+rcx: kb,
+rdx: lb,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: nb,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x809,
+}
+
+0x80a: leave
+register:{
+rax: jb,
+rbx: b,
+rcx: kb,
+rdx: lb,
+rsp: 18446744073709551544 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: nb,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x809,
+}
+
+0x80b: ret
+register:{
+rax: jb,
+rbx: b,
+rcx: kb,
+rdx: lb,
+rsp: 18446744073709551544 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: nb,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x809,
+}
+
+The return address is 0x8c5
+0x8c5: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: lb,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: nb,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x8c9: mov rdi,rax
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: lb,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x8cc: call 0x7ad
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: lb,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+Jump address is : 0x7ad
+
+0x7ad: push rbp
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: lb,
+rsp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x7ae: mov rbp,rsp
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: lb,
+rsp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x7b1: sub rsp,0x10
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: lb,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x7b5: mov qword ptr [rbp-0x8],rdi
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: lb,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x7b9: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: lb,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x7bd: mov rax,qword ptr [rax+0x8]
+register:{
+rax: 0x80c,
+rbx: b,
+rcx: kb,
+rdx: lb,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x7c1: mov rdx,qword ptr [rbp-0x8]
+register:{
+rax: 0x80c,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x7c5: mov rdi,rdx
+register:{
+rax: 0x80c,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x7c8: call rax
+register:{
+rax: 0x80c,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+Jump address is : 0x80c
+
+0x80c: push rbp
+register:{
+rax: 0x80c,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551504 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x80d: mov rbp,rsp
+register:{
+rax: 0x80c,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551504 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551504 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x810: sub rsp,0x10
+register:{
+rax: 0x80c,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551488 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551504 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x814: mov qword ptr [rbp-0x8],rdi
+register:{
+rax: 0x80c,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551488 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551504 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x818: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551488 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551504 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x81c: mov rdi,rax
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551488 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551504 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x81f: call 0x745
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551488 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551504 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+Jump address is : 0x745
+
+0x745: push rbp
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551472 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551504 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x746: mov rbp,rsp
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551472 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551472 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x749: sub rsp,0x10
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551456 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551472 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x74d: mov qword ptr [rbp-0x8],rdi
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551456 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551472 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: ab,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x751: lea rdi,[rip+0x221]
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551456 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551472 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: 0x979,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+0x758: call 0x5d0
+register:{
+rax: ab,
+rbx: b,
+rcx: kb,
+rdx: ab,
+rsp: 18446744073709551456 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551472 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: mb,
+rdi: 0x979,
+r8: ob,
+r9: pb,
+r10: qb,
+r11: rb,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8c5,
+}
+
+Jump address is : 0x5d0
+
+Execute the external function: undefined
+
+The return address is 0x75d
+Jump to an undefined external address 1488 at address 0x758
+0x75d: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: tb,
+rdx: ub,
+rsp: 18446744073709551456 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551472 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: vb,
+rdi: wb,
+r8: xb,
+r9: yb,
+r10: zb,
+r11: ac,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x75d,
+}
+
+0x761: leave
+register:{
+rax: ab,
+rbx: b,
+rcx: tb,
+rdx: ub,
+rsp: 18446744073709551480 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551504 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: vb,
+rdi: wb,
+r8: xb,
+r9: yb,
+r10: zb,
+r11: ac,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x75d,
+}
+
+0x762: ret
+register:{
+rax: ab,
+rbx: b,
+rcx: tb,
+rdx: ub,
+rsp: 18446744073709551480 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551504 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: vb,
+rdi: wb,
+r8: xb,
+r9: yb,
+r10: zb,
+r11: ac,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x75d,
+}
+
+The return address is 0x824
+0x824: lea rdi,[rip+0x17a]
+register:{
+rax: ab,
+rbx: b,
+rcx: tb,
+rdx: ub,
+rsp: 18446744073709551488 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551504 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: vb,
+rdi: 0x9a5,
+r8: xb,
+r9: yb,
+r10: zb,
+r11: ac,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x824,
+}
+
+0x82b: call 0x5d0
+register:{
+rax: ab,
+rbx: b,
+rcx: tb,
+rdx: ub,
+rsp: 18446744073709551488 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551504 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: vb,
+rdi: 0x9a5,
+r8: xb,
+r9: yb,
+r10: zb,
+r11: ac,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x824,
+}
+
+Jump address is : 0x5d0
+
+Execute the external function: undefined
+
+The return address is 0x830
+Jump to an undefined external address 1488 at address 0x82b
+0x830: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: cc,
+rdx: dc,
+rsp: 18446744073709551488 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551504 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: ec,
+rdi: fc,
+r8: gc,
+r9: hc,
+r10: ic,
+r11: jc,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x830,
+}
+
+0x834: leave
+register:{
+rax: ab,
+rbx: b,
+rcx: cc,
+rdx: dc,
+rsp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: ec,
+rdi: fc,
+r8: gc,
+r9: hc,
+r10: ic,
+r11: jc,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x830,
+}
+
+0x835: ret
+register:{
+rax: ab,
+rbx: b,
+rcx: cc,
+rdx: dc,
+rsp: 18446744073709551512 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: ec,
+rdi: fc,
+r8: gc,
+r9: hc,
+r10: ic,
+r11: jc,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x830,
+}
+
+The return address is 0x7ca
+0x7ca: mov rax,qword ptr [rbp-0x8]
+register:{
+rax: ab,
+rbx: b,
+rcx: cc,
+rdx: dc,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: ec,
+rdi: fc,
+r8: gc,
+r9: hc,
+r10: ic,
+r11: jc,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x7ca,
+}
+
+0x7ce: mov rdi,rax
+register:{
+rax: ab,
+rbx: b,
+rcx: cc,
+rdx: dc,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: ec,
+rdi: ab,
+r8: gc,
+r9: hc,
+r10: ic,
+r11: jc,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x7ca,
+}
+
+0x7d1: call 0x5c0
+register:{
+rax: ab,
+rbx: b,
+rcx: cc,
+rdx: dc,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: ec,
+rdi: ab,
+r8: gc,
+r9: hc,
+r10: ic,
+r11: jc,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x7ca,
+}
+
+Jump address is : 0x5c0
+
+Execute the external function: undefined
+
+The return address is 0x7d6
+Jump to an undefined external address 1472 at address 0x7d1
+0x7d6: nop
+register:{
+rax: kc,
+rbx: b,
+rcx: lc,
+rdx: mc,
+rsp: 18446744073709551520 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551536 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: nc,
+rdi: oc,
+r8: pc,
+r9: qc,
+r10: rc,
+r11: sc,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x7d6,
+}
+
+0x7d7: leave
+register:{
+rax: kc,
+rbx: b,
+rcx: lc,
+rdx: mc,
+rsp: 18446744073709551544 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: nc,
+rdi: oc,
+r8: pc,
+r9: qc,
+r10: rc,
+r11: sc,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x7d6,
+}
+
+0x7d8: ret
+register:{
+rax: kc,
+rbx: b,
+rcx: lc,
+rdx: mc,
+rsp: 18446744073709551544 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: nc,
+rdi: oc,
+r8: pc,
+r9: qc,
+r10: rc,
+r11: sc,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x7d6,
+}
+
+The return address is 0x8d1
+0x8d1: mov eax,0x0
+register:{
+rax: 0x0,
+rbx: b,
+rcx: lc,
+rdx: mc,
+rsp: 18446744073709551552 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: 18446744073709551584 + Concat(Extract(63, 4, 8 + e), 0),
+rsi: nc,
+rdi: oc,
+r8: pc,
+r9: qc,
+r10: rc,
+r11: sc,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8d1,
+}
+
+0x8d6: leave
+register:{
+rax: 0x0,
+rbx: b,
+rcx: lc,
+rdx: mc,
+rsp: 18446744073709551592 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: r,
+rsi: nc,
+rdi: oc,
+r8: pc,
+r9: qc,
+r10: rc,
+r11: sc,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8d1,
+}
+
+0x8d7: ret
+register:{
+rax: 0x0,
+rbx: b,
+rcx: lc,
+rdx: mc,
+rsp: 18446744073709551592 + Concat(Extract(63, 4, 8 + e), 0),
+rbp: r,
+rsi: nc,
+rdi: oc,
+r8: pc,
+r9: qc,
+r10: rc,
+r11: sc,
+r12: m,
+r13: n,
+r14: o,
+r15: p,
+rip: 0x8d1,
+}
+
+The symbolic execution has been successfully terminated
+
+145
+123

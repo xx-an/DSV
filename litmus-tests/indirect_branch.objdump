@@ -1,0 +1,33 @@
+
+/home/cindy/Documents/Projects/DSV/litmus-tests/indirect_branch:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000400203 <_start>:
+  400203:	48 c7 c0 01 00 00 00 	mov    rax,0x1
+  40020a:	48 c7 c3 02 00 00 00 	mov    rbx,0x2
+  400211:	48 01 d8             	add    rax,rbx
+  400214:	48 83 ff 05          	cmp    rdi,0x5
+  400218:	77 30                	ja     40024a <foo>
+  40021a:	89 f8                	mov    eax,edi
+  40021c:	48 8d 14 85 00 00 00 	lea    rdx,[rax*4+0x0]
+  400223:	00 
+  400224:	48 8d 04 25 52 02 40 	lea    rax,ds:0x400252
+  40022b:	00 
+  40022c:	48 01 d0             	add    rax,rdx
+  40022f:	ff e0                	jmp    rax
+  400231:	48 83 c3 02          	add    rbx,0x2
+  400235:	c3                   	ret    
+  400236:	48 c7 c0 01 00 00 00 	mov    rax,0x1
+  40023d:	c3                   	ret    
+  40023e:	48 0f af c2          	imul   rax,rdx
+  400242:	c3                   	ret    
+  400243:	48 89 c1             	mov    rcx,rax
+  400246:	48 01 cb             	add    rbx,rcx
+  400249:	c3                   	ret    
+
+000000000040024a <foo>:
+  40024a:	48 83 c3 01          	add    rbx,0x1
+  40024e:	48 89 d9             	mov    rcx,rbx
+  400251:	c3                   	ret    
