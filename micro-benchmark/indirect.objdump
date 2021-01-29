@@ -1,5 +1,5 @@
 
-indirect:     file format elf64-x86-64
+/home/cindy/Documents/Projects/DSV/micro-benchmark/indirect:     file format elf64-x86-64
 
 
 Disassembly of section .init:

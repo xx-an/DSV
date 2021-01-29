@@ -24,7 +24,6 @@ from . import ext_func_helper
 
 rip = 0
 
-
 def sym_bin_op(op):
     return lambda store, dest, src: sym_bin_oprt(store, op, dest, src)
 
@@ -425,7 +424,7 @@ def start_init(store, _start_address):
     # ext_func_helper.set_reg_val(store, rip, 'r14')
     # ext_func_helper.set_reg_val(store, rip, 'r15')
     ext_func_helper.set_regs_sym(store, rip, dests)
-    # sym_engine.set_sym(store, rip, 'rsp', sym_helper.bit_vec_val_sym(2**48-9))
+    sym_engine.set_sym(store, rip, 'rsp', sym_helper.bit_vec_val_sym(2**48-9))
     ext_func_helper.set_segment_regs_sym(store, rip)
     utils.logger.debug('The following registers are set to symbolic value: ' + str(dests))
     ext_func_helper.clear_flags(store)
@@ -443,9 +442,33 @@ def ext__libc_start_main(store, main_address, _start_address):
     sym_engine.set_sym(store, rip, 'rbp', sym_engine.get_sym(store, main_address, 'rcx'))
     utils.logger.debug('The following registers are set to symbolic value: ' + str(dests))
     ext_func_helper.clear_flags(store)
-    sym_src = sym_helper.gen_sym_x()
+    sym_t = sym_helper.gen_sym_t()
     sym_rsp = sym_engine.get_sym(store, rip, 'rsp')
-    sym_engine.set_mem_sym(store, sym_rsp, sym_src)
+    sym_engine.set_mem_sym(store, sym_rsp, sym_t)
+    sym_x = sym_helper.gen_sym_x()
+    sym_rsp = sym_engine.get_sym(store, rip, 'rsp')
+    sym_engine.set_mem_sym(store, sym_rsp, sym_x)
+
+
+def ext_alloc_mem_call(store, rip, heap_addr, ext_func_name):
+    mem_size = sym_engine.get_sym(store, rip, 'rdi')
+    sym_engine.set_sym(store, rip, 'rax', sym_helper.bit_vec_val_sym(heap_addr))
+    if sym_helper.sym_is_int_or_bitvecnum(mem_size):
+        mem_size = mem_size.as_long()
+        heap_addr += mem_size
+    else:
+        mem_size = utils.MAX_MALLOC_SIZE
+        heap_addr += mem_size
+    dests = ext_func_helper.regs_str_to_list('rcx, rdx, rsi, rdi, r8, r9, r10, r11')
+    ext_func_helper.set_regs_sym(store, rip, dests)
+    ext_func_helper.clear_flags(store)
+    return heap_addr
+
+def ext_rand_call(store):
+    ext_func_call(store, 'rand')
+    rax_val = sym_engine.get_sym(store, rip, 'rax')
+    new_pred = simplify(rax_val >= 0)
+    return new_pred
 
 
 def ext_func_call(store, ext_func_name):

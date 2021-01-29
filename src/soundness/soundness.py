@@ -15,31 +15,23 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 from ..common import utils
-from ..disassembler import helper
 from .reachable import Reachable
 
-def _check_inst_eq(address, inst, elf_bytes, bin_rep):
-    inst_capstone = helper.disasm_with_capstone(address, elf_bytes)
-    normalized_cap_inst = helper.normalize_cap_inst(address, inst_capstone)
-    if normalized_cap_inst != helper.normalize_inst(address, inst):
-        if not inst.startswith('nop '):
-            utils.logger.debug('The soundness of inst ' + inst + ' is in doubt')
-            utils.logger.debug('The normalized capstone inst is ' + normalized_cap_inst)
-            return False
-    return True
-
+optimized_exceptions = ['ret']
 
 def _check_bin_eq(address, inst, elf_content):
     bin_rep = utils.generate_inst_bin(inst)
     elf_bytes = elf_content.read_byte_sequence(address, utils.get_bytes_len(bin_rep))
-    if bin_rep != elf_bytes and not utils.check_jmp_with_address(inst) and not inst.startswith('nop'):
+    if bin_rep != elf_bytes and not utils.check_jmp_with_address(inst) and not inst.startswith('nop') and 'ret' not in inst:
         # utils.logger.info('The binary representations are not equivalent for inst: ' + inst + ' at address ' + str(hex(address)))
         # utils.logger.info('gcc binary rep: ' + bin_rep)
         # utils.logger.info('elf binary rep: ' + elf_bytes)
         print('The binary representations are not equivalent for inst: ' + inst + ' at address ' + str(hex(address)))
         print('gcc binary rep: ' + bin_rep)
         print('elf binary rep: ' + elf_bytes)
+        return False
         # inst_eq = _check_inst_eq(address, inst, elf_bytes, bin_rep)
+    return True
 
 
 def sound(elf_content, disasm_asm, cfg):
@@ -47,10 +39,10 @@ def sound(elf_content, disasm_asm, cfg):
     address_inst_map = disasm_asm.get_address_inst_map()
     for address in addresses:
         inst = address_inst_map[address]
-        _check_bin_eq(address, inst, elf_content)
-        # if not reachable:
-        #     utils.logger.debug('The address ' + str(address) + ' with inst ' + inst + ' is not reachable from the entry point')
-        #     continue
+        res = _check_bin_eq(address, inst, elf_content)
+        if not res:
+            return False
+    return True
         
 
 def sound_disasm_file(elf_content, disasm_log_file):
@@ -58,5 +50,8 @@ def sound_disasm_file(elf_content, disasm_log_file):
     reachable_address_table = reachable.reachable_address_table
     for address in reachable_address_table.keys():
         inst = reachable_address_table[address]
-        _check_bin_eq(address, inst, elf_content)
+        res = _check_bin_eq(address, inst, elf_content)
+        if not res:
+            return False
+    return True
 

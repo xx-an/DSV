@@ -21,7 +21,7 @@ from ..common import utils
 from . import sym_helper
 from ..common import global_var
 
-letter_num_neg_pat = re.compile(r'\w+|-\w+')
+letter_num_neg_pat = re.compile(r'\w+')
 sym_pat = re.compile(r'\W+')
 
 def get_sym_val(str_val, store, length):
@@ -227,7 +227,6 @@ def read_memory_val(store, address, length=lib.DEFAULT_REG_LEN):
             res = BitVec(utils.MEM_DATA_SEC_SUFFIX + hex(address), length)
     else:
         res = sym_helper.gen_mem_sym(length)
-        set_mem_sym(store, address, res, length)
     return res
 
 

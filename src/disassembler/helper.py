@@ -20,10 +20,9 @@ import sys
 import bap
 import angr
 import r2pipe
-from capstone import *
-from ..common import utils
+
 from ..common import lib
-from ..common.inst_element import Inst_Elem
+from ..common import utils
 
 BYTE_LEN_REPS = {
     'byte': 'byte', 
@@ -37,7 +36,7 @@ BYTE_LEN_REPS = {
     'xmmword': 'xmmword'
 }
 
-INVALID_SECTION_LABELS = {'_init', '_fini', '__libc_csu_init', '__libc_csu_fini', 'frame_dummy', 'register_tm_clones', 'deregister_tm_clones', '__do_global_dtors_aux'}
+INVALID_SECTION_LABELS = {'_fini', '__libc_csu_fini', 'frame_dummy', 'register_tm_clones', 'deregister_tm_clones', '__do_global_dtors_aux'}
 
 BYTE_REP_PTR_MAP = {
     'q': 'qword ptr',
@@ -413,6 +412,21 @@ def rewrite_absolute_address_to_relative(arg, rip):
     return res
 
 
+def switch_mem_arg_order(arg):
+    res = arg
+    if arg.endswith(']') and 's:' not in arg:
+        arg_split = arg.strip().split('[')
+        arg_content = arg_split[1].split(']')[0].strip()
+        if arg_content.startswith('-') and utils.imm_start_pat.match(arg_content):
+            arg_content_split = arg_content.split('+')
+            if len(arg_content_split) > 1:
+                new_arg_content = '+'.join(arg_content_split[1:]) + '+' + arg_content_split[0]
+            else:
+                new_arg_content = arg_content
+            res = arg_split[0] + '[' + new_arg_content.replace('+-', '-').strip() + ']'
+    return res
+
+
 def convert_to_hex_rep(arg):
     res = arg
     if re.match(r'^[0-9a-f]+$|^-[0-9a-f]+$', arg):
@@ -469,7 +483,6 @@ def retrieve_bytelen_rep(name, args):
     return word_ptr_rep
 
 
-
 def add_jump_address_wordptr_rep(arg):
     res = arg
     if arg.endswith(']'):
@@ -477,39 +490,21 @@ def add_jump_address_wordptr_rep(arg):
     return res
 
 
-def normalize_inst(address, inst):
-    inst_elem = Inst_Elem(inst)
-    normalized_inst = inst_elem.normalize(address, normalize_arg).lower()
-    return normalized_inst
-
-
-def normalize_cap_arg(address, inst_name, arg):
-    # res = normalize_arg(inst_name, arg, address)
-    res = arg
-    arg_subs = utils.split_sep_bks(res.strip(), ' ')
-    arg_subs = list(map(lambda x: x.replace(' ', ''), arg_subs))
-    res = ' '.join(arg_subs)
-    if re.match(r'^[0-9a-f]+$', res):
-        res = '0x' + res
-    if utils.check_jmp_with_address(inst_name):
-        res = calculate_relative_address(res, address)
+# input1: 'mov    rax,QWORD PTR [rip+0x200a5a] '
+# output1: 'mov    rax,qword ptr [rip+0x200a5a] '
+def norm_ptr_rep(line):
+    res = line
+    if ' PTR ' in line or ' ptr ' in line:
+        for byte_len_rep in BYTE_LEN_REPS:
+            res = re.sub(byte_len_rep + ' PTR ', byte_len_rep.lower() + ' ptr ', res)
+    else:
+        for d_type in BYTE_LEN_REPS:
+            d_type_rep = d_type + ' '
+            d_type_lower_rep = d_type.lower() + ' '
+            if d_type_rep in line:
+                res = re.sub(d_type_rep, d_type_lower_rep + ' ptr ', res)
+            elif ',' + d_type_lower_rep in line or ' ' + d_type_lower_rep in line or '\t' + d_type_lower_rep in line:
+                res = re.sub(d_type_lower_rep, d_type_lower_rep + ' ptr ', res)
     return res
 
-
-def normalize_cap_inst(address, inst):
-    inst_elem = Inst_Elem(inst)
-    normalized_inst = inst_elem.normalize(address, normalize_cap_arg, utils.id_op).lower()
-    return normalized_inst
-
-
-# address: 0x73d
-# bin_rep: e8 9e fe ff ff
-def disasm_with_capstone(address, bin_rep):
-    CODE = utils.str_to_bytes(bin_rep)
-    md = Cs(CS_ARCH_X86, CS_MODE_64)
-    inst_capstone = ''
-    for i in md.disasm(CODE, address):
-        inst_capstone = '{} {}'.format(i.mnemonic, i.op_str)
-        break
-    return inst_capstone
 

@@ -1,2 +1,2 @@
 .intel_syntax noprefix
-call 0x2400
+call 0x14a0

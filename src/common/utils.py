@@ -28,31 +28,31 @@ from enum import Enum
 MAX_VISIT_COUNT = 25
 MAX_TRACEBACK_COUNT = 15
 MAX_INST_ADDR_GAP = 25
+MAX_MALLOC_SIZE = 16711568
+
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(os.path.realpath(__file__)))))
 
 LOG_NAMES = ['log', 'aux']
-formatter = logging.Formatter('%(message)s')
 
-logger = logging.getLogger(LOG_NAMES[0])
-aux_logger = logging.getLogger(LOG_NAMES[1])
+# logger = logging.getLogger(LOG_NAMES[0])
+# aux_logger = logging.getLogger(LOG_NAMES[1])
 
-def setup_logger(log_name, log_path, level):
+def setup_logger(log_name, log_path, verbose, level=logging.INFO):
+    file_handler = logging.FileHandler(log_path, mode='w+')
     if log_name == LOG_NAMES[0]:
         global logger
         logger = logging.getLogger(log_name)
         logger.setLevel(level)
-        log_handler = logging.FileHandler(log_path, mode='w+')
-        log_handler.setLevel(level)
-        log_handler.setFormatter(formatter)
-        logger.addHandler(log_handler) 
+        if not verbose:
+            logger.propagate = False
+        logger.addHandler(file_handler) 
     else:
         global aux_logger
         aux_logger = logging.getLogger(log_name)
         aux_logger.setLevel(level)
-        log_handler = logging.FileHandler(log_path, mode='w+')
-        log_handler.setLevel(level)
-        log_handler.setFormatter(formatter)
-        aux_logger.addHandler(log_handler) 
+        if not verbose:
+            aux_logger.propagate = False
+        aux_logger.addHandler(file_handler) 
     
 
 def close_logger(log_name):
@@ -72,6 +72,7 @@ def close_logger(log_name):
 
 delimits = {'(': ')', '[': ']', '{': '}'}
 exec_file_suffix = ['', '.so', '.o', '.os']
+float_pat = re.compile('^[0-9.]+$|^-[0-9.]+$')
 imm_pat = re.compile('^0x[0-9a-fA-F]+$|^[0-9]+$|^-[0-9]+$|^-0x[0-9a-fA-F]+$')
 imm_start_pat = re.compile('^0x[0-9a-fA-F]+|^[0-9]+|^-[0-9]+|^-0x[0-9a-fA-F]+')
 MEM_DATA_SEC_SUFFIX = 'mem@'

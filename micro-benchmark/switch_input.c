@@ -38,9 +38,9 @@ int main(int argc, char **argv)
     }
 
     int c;
-    c = getopt_long(argc, argv, "+:hVT:", long_options, NULL);
 
-    //while ((c = getopt_long(argc, argv, "+:hVT:", long_options, NULL)) != -1) {
+    while (1) {
+        c = getopt_long(argc, argv, "+:hVT:", long_options, NULL);
         switch (c) {
         case ':':
             missing_argument(argv[optind - 1]);
@@ -58,7 +58,7 @@ int main(int argc, char **argv)
             sleep(10);
             break;
         }
-    //}
+    }
   
 
    int x = 42;

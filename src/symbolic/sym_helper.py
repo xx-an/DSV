@@ -30,7 +30,7 @@ def cnt_init():
 
 def gen_sym(length=lib.DEFAULT_REG_LEN):
     global cnt
-    if cnt == 23: cnt += 1
+    if cnt == 23 or cnt == 20: cnt += 1
     expr = utils.generate_sym_expr(cnt)
     res = BitVec(expr, length)
     cnt += 1
@@ -49,6 +49,10 @@ def gen_seg_reg_sym(name, length=lib.DEFAULT_REG_LEN):
 
 def gen_sym_x(length=lib.DEFAULT_REG_LEN):
     res = BitVec('x', length)
+    return res
+
+def gen_sym_t(length=lib.DEFAULT_REG_LEN):
+    res = BitVec('t', length)
     return res
     
 def bottom(length=lib.DEFAULT_REG_LEN):
@@ -189,6 +193,9 @@ def update_sym_expr(expr, new_expr, rel='or'):
     return res
 
 def is_term_address(address):
+    return is_equal(address, BitVec('t', lib.DEFAULT_REG_LEN))
+
+def is_xterm_address(address):
     return is_equal(address, BitVec('x', lib.DEFAULT_REG_LEN))
 
 

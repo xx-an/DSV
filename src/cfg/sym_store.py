@@ -22,7 +22,7 @@ from ..symbolic import sym_helper
 from ..semantics import semantics
 
 class Sym_Store:
-    def __init__(self, store, rip=None, inst=None):
+    def __init__(self, store, rip=None, heap_addr=None, inst=None):
         self.rip = rip
         if store:
             self.store = store.copy()
@@ -31,6 +31,7 @@ class Sym_Store:
                     self.store[name] = store[name]
                 else:
                     self.store[name] = store[name].copy()
+            self.heap_addr = heap_addr
         else:
             self.store = {}
             for name in lib.STATE_NAMES:
@@ -38,6 +39,7 @@ class Sym_Store:
                     self.store[name] = set()
                 else:
                     self.store[name] = {}
+            self.heap_addr = 0x10000000
         if inst and not utils.check_branch_inst_wo_call(inst):
             self.parse_semantics(inst)
 
@@ -65,7 +67,7 @@ class Sym_Store:
         result = ''
         if self.rip:
             result += 'rip:' + hex(self.rip) + '\n'
-        pp_lib_names = [lib.REG]
+        pp_lib_names = [lib.REG, lib.MEM]
         for k in pp_lib_names:
             v = self.store[k]
             res_str = ''

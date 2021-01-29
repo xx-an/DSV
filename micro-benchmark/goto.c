@@ -26,5 +26,5 @@ lbl_3:
         goto *jump_table[rand() % 3];       
 
 end:
-printf("end\n");
+    printf("end\n");
 }

@@ -29,10 +29,11 @@ from ..symbolic import sym_helper
 from ..symbolic import sym_engine
 
 class CFG(object):
-    def __init__(self, address_sym_table, address_inst_map, address_next_map, start_address, main_address, disasm_type):
+    def __init__(self, sym_table, address_sym_table, address_inst_map, address_next_map, start_address, main_address, disasm_type):
         self.block_set = {}
         self.block_stack = []
         self.address_block_map = {}
+        self.sym_table = sym_table
         self.address_sym_table = address_sym_table
         self.start_address = start_address
         self.address_inst_map = address_inst_map
@@ -44,7 +45,7 @@ class CFG(object):
         self.ret_call_address_map = {}
         self.address_jt_entries_map = {}
         self.indirect_inst_set = set()
-        sym_store = Sym_Store(None, None, None)
+        sym_store = Sym_Store(None, None, None, None)
         constraint = None
         self.retrieve_all_branch_inst()
         sym_helper.cnt_init()
@@ -125,16 +126,14 @@ class CFG(object):
                     res = self._check_path_reachability(constraint)
                     if res == False:
                         return
-                utils.logger.info('Cannot recognize the jump address of ' + inst + ' at address ' + hex(address))
-                utils.logger.info('Jump address is : ' + sym_helper.string_of_address(new_address))
-                sys.exit('Cannot recognize the jump address of ' + inst + ' at address ' + hex(address))
+                utils.logger.info('Cannot resolve the jump address ' + sym_helper.string_of_address(new_address) + ' of ' + inst + ' at address ' + hex(address))
+                # sys.exit('Cannot resolve the jump address ' + sym_helper.string_of_address(new_address) + ' of ' + inst + ' at address ' + hex(address))
         else:
             if constraint is not None:
                 res = self._check_path_reachability(constraint)
                 if res == False: return
-            utils.logger.info('Cannot recognize the jump address of ' + inst + ' at address ' + hex(address))
-            # utils.logger.info('Jump address is : ' + sym_helper.string_of_address(new_address)) 
-            # sys.exit('Cannot recognize the jump address of ' + inst + ' at address ' + hex(address))
+            utils.logger.info('Cannot resolve the jump address ' + sym_helper.string_of_address(new_address) + ' of ' + inst + ' at address ' + hex(address))
+            # sys.exit('Cannot resolve the jump address ' + sym_helper.string_of_address(new_address) + ' of ' + inst + ' at address ' + hex(address))
                 
 
     def external_branch(self, ext_func_name, block, address, inst, sym_store, constraint):
@@ -142,13 +141,13 @@ class CFG(object):
         rip, store = sym_store.rip, sym_store.store
         if ext_func_name.startswith('__libc_start_main'):
             semantics.call(store, rip)
-            next_address = self.main_address
-            semantics.ext__libc_start_main(store, next_address, self.start_address)
+            next_address = self.sym_table['__libc_csu_init']
             utils.logger.info(hex(address) + ': jump address is ' + sym_helper.string_of_address(next_address))
+            semantics.ext__libc_start_main(store, next_address, self.start_address)
             self.jump_to_block(block, address, inst, next_address, sym_store, constraint)
         elif ext_func_name == 'pthread_create':
-            store, rip = sym_store.store, sym_store.rip
-            jmp_sym_store = Sym_Store(store, rip)
+            store, rip, heap_addr = sym_store.store, sym_store.rip, sym_store.heap_addr
+            jmp_sym_store = Sym_Store(store, rip, heap_addr)
             sym_rdi = sym_engine.get_sym(store, rip, 'rdi')
             if sym_helper.sym_is_int_or_bitvecnum(sym_rdi):
                 semantics.ret(jmp_sym_store.store)
@@ -156,9 +155,17 @@ class CFG(object):
                 if rdi_val in self.address_inst_map:
                     utils.logger.info(hex(address) + ': jump address is ' + sym_helper.string_of_address(rdi_val))
                     self.jump_to_block(block, address, inst, rdi_val, jmp_sym_store, constraint)
-            fall_through_sym_store = Sym_Store(store, rip)
+            fall_through_sym_store = Sym_Store(store, rip, heap_addr)
             semantics.ext_func_call(fall_through_sym_store.store, ext_func_name)
             self.build_ret_branch(block, address, inst, fall_through_sym_store, constraint)
+        elif ext_func_name in (('malloc', 'calloc', 'realloc')):
+            new_heap_addr = semantics.ext_alloc_mem_call(store, rip, sym_store.heap_addr, ext_func_name)
+            sym_store.heap_addr = new_heap_addr
+            self.build_ret_branch(block, address, inst, sym_store, constraint)
+        elif ext_func_name == 'rand':
+            new_pred = semantics.ext_rand_call(store)
+            new_constraint = Constraint(constraint, new_pred)
+            self.build_ret_branch(block, address, inst, sym_store, new_constraint)
         else:
             semantics.ext_func_call(store, ext_func_name)
             ext_name = ext_func_name.split('@', 1)[0].strip()
@@ -182,12 +189,16 @@ class CFG(object):
             elif sym_helper.is_term_address(new_address):
                 self.jump_to_dummy(block)
                 utils.logger.info('The symbolic execution has been successfully terminated\n')
+            elif sym_helper.is_xterm_address(new_address):
+                next_address = self.main_address
+                utils.logger.info(hex(address) + ': jump address is ' + sym_helper.string_of_address(next_address))
+                self.jump_to_block(block, address, inst, next_address, sym_store, constraint)
             else:
                 if constraint is not None:
                     res = self._check_path_reachability(constraint)
                     if res == False: return
-                utils.logger.info('Cannot recognize the return address of ' + inst + ' at address ' + hex(address))
-                sys.exit('Cannot recognize the return address of ' + inst + ' at address ' + hex(address))
+                # utils.logger.info('Cannot resolve the return address of ' + inst + ' at address ' + hex(address))
+                # sys.exit('Cannot resolve the return address of ' + inst + ' at address ' + hex(address))
             
 
     def trace_back(self, blk, sym_names, trace_list):
@@ -258,7 +269,7 @@ class CFG(object):
         
 
     def _add_block_based_on_predicate(self, parent_blk, address, inst, sym_store, constraint, rip, pred):
-        sym_store = Sym_Store(sym_store.store, rip)
+        sym_store = Sym_Store(sym_store.store, rip, sym_store.heap_addr)
         semantics.cmov(sym_store.store, rip, inst, pred)
         self._add_new_block(parent_blk, address, inst, sym_store, constraint)
 
@@ -275,7 +286,7 @@ class CFG(object):
                 self._add_block_based_on_predicate(parent_blk, address, inst, sym_store, constraint, rip, True)
                 self._add_block_based_on_predicate(parent_blk, address, inst, sym_store, constraint, rip, False)
         else:
-            sym_store = Sym_Store(sym_store.store, rip, inst)
+            sym_store = Sym_Store(sym_store.store, rip, sym_store.heap_addr, inst)
             self._add_new_block(parent_blk, address, inst, sym_store, constraint)
 
 
@@ -331,12 +342,12 @@ class CFG(object):
 
     def _reconstruct_jt_branches(self, blk, distinct_entries, inst_dest, src_len):
         inst = blk.inst
-        rip, store = blk.sym_store.rip, blk.sym_store.store
+        rip, store, heap_addr = blk.sym_store.rip, blk.sym_store.store, blk.sym_store.heap_addr
         dest_len = utils.get_sym_length(inst_dest)
         sym_store_list = []
         inst_name = inst.split(' ', 1)[0]
         for mem_val in distinct_entries:
-            new_sym_store = Sym_Store(store, rip)
+            new_sym_store = Sym_Store(store, rip, heap_addr)
             if inst_name == 'mov':
                 sym_engine.set_sym(new_sym_store.store, rip, inst_dest, mem_val)
             elif 's' in inst_name:
@@ -369,11 +380,11 @@ class CFG(object):
 
     def _reconstruct_jump_targets(self, blk, inst_dest, target_addresses):
         address, inst = blk.address, blk.inst
-        rip, store, constraint = blk.sym_store.rip, blk.sym_store.store, blk.constraint
+        rip, store, heap_addr, constraint = blk.sym_store.rip, blk.sym_store.store, blk.sym_store.heap_addr, blk.constraint
         for target_addr in target_addresses:
             if self.disasm_type == 'bap' and target_addr not in self.address_inst_map:
                 continue
-            new_sym_store = Sym_Store(store, rip)
+            new_sym_store = Sym_Store(store, rip, heap_addr)
             sym_engine.set_sym(new_sym_store.store, rip, inst_dest, target_addr)
             self._add_new_block(blk, address, inst, new_sym_store, constraint)
 
@@ -446,7 +457,7 @@ class CFG(object):
         elif cnt == 0: return False
         prev_sym_store = blk.sym_store
         new_inst = self.address_inst_map[new_address]
-        new_sym_store = Sym_Store(sym_store.store, prev_sym_store.rip, new_inst)
+        new_sym_store = Sym_Store(sym_store.store, prev_sym_store.rip, sym_store.heap_addr, new_inst)
         res = new_sym_store.state_ith_eq(prev_sym_store) and new_sym_store.aux_mem_eq(prev_sym_store, lib.AUX_MEM)
         return res
 
@@ -475,7 +486,7 @@ class CFG(object):
                 return True, blk
             prev_sym_store = blk.sym_store
             rip = prev_sym_store.rip
-            new_sym_store = Sym_Store(sym_store.store, rip, new_inst)
+            new_sym_store = Sym_Store(sym_store.store, rip, sym_store.heap_addr, new_inst)
             new_sym_store.merge_store(prev_sym_store, self.address_inst_map)
             # if not new_sym_store.state_ith_eq(prev_sym_store) or not new_sym_store.aux_mem_eq(prev_sym_store, lib.AUX_MEM):
             #     new_sym_store.merge_store(prev_sym_store, self.address_inst_map)
