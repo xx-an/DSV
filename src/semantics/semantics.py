@@ -68,6 +68,9 @@ def push(store, src):
     sym_rsp = sym_bin_op_na_flags(store, '-', 'rsp', '8')
     sym_engine.set_mem_sym(store, sym_rsp, sym_src)
 
+def push_val(store, sym_val):
+    sym_rsp = sym_bin_op_na_flags(store, '-', 'rsp', '8')
+    sym_engine.set_mem_sym(store, sym_rsp, sym_val)
 
 def call(store, dest):
     push(store, hex(rip))
@@ -344,7 +347,7 @@ def bt(store, bit_base, bit_offset):
 def parse_semantics(store, curr_rip, inst):
     global rip
     rip = curr_rip
-    print(inst)
+    # print(inst)
     if inst.startswith('lock '):
         inst = inst.split(' ', 1)[1]
     inst_split = inst.strip().split(' ', 1)
@@ -434,20 +437,16 @@ def start_init(store, _start_address):
     sym_engine.set_mem_sym(store, sym_rsp, sym_src)
 
 
-def ext__libc_start_main(store, main_address, _start_address):
-    # dests = 'rdx, r8, r9, rsp'
+def ext__libc_start_main(store, main_address):
     dests = ext_func_helper.regs_str_to_list('rcx, rdx, rsi, rdi, r8, r9, r10, r11')
     ext_func_helper.set_reg_val(store, rip, 'rax', main_address)
     ext_func_helper.set_regs_sym(store, rip, dests)
     sym_engine.set_sym(store, rip, 'rbp', sym_engine.get_sym(store, main_address, 'rcx'))
-    utils.logger.debug('The following registers are set to symbolic value: ' + str(dests))
     ext_func_helper.clear_flags(store)
     sym_t = sym_helper.gen_sym_t()
-    sym_rsp = sym_engine.get_sym(store, rip, 'rsp')
-    sym_engine.set_mem_sym(store, sym_rsp, sym_t)
+    push_val(store, sym_t)
     sym_x = sym_helper.gen_sym_x()
-    sym_rsp = sym_engine.get_sym(store, rip, 'rsp')
-    sym_engine.set_mem_sym(store, sym_rsp, sym_x)
+    push_val(store, sym_x)
 
 
 def ext_alloc_mem_call(store, rip, heap_addr, ext_func_name):

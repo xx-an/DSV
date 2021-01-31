@@ -1562,9 +1562,8 @@ Block exists: cmp dl,0x2f at address 0x1e15 is visited for 3 times
 0x1649: pop r13
 0x164b: pop r14
 0x164d: ret
-0x164d: the return address is 0x171a
-0x171a: hlt
-0x171b: nop dword ptr [rax+rax]
+The symbolic execution has been successfully terminated
+
 0x18c8: call 0x1360
 0x18c8: jump address is 0x1360
 0x1360: jmp qword ptr [rip+0x205b92]
@@ -11308,6 +11307,6 @@ Block exists: cmp eax,ebp at address 0x1618 is visited for 1 times
 0x1f5a: jump address is 0x1280
 0x1280: jmp qword ptr [rip+0x205c02]
 3415
-2201
+2199
 61
-31.650508165359497
+37.386146068573

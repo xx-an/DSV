@@ -34,8 +34,8 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(os
 
 LOG_NAMES = ['log', 'aux']
 
-# logger = logging.getLogger(LOG_NAMES[0])
-# aux_logger = logging.getLogger(LOG_NAMES[1])
+logger = logging.getLogger(LOG_NAMES[0])
+aux_logger = logging.getLogger(LOG_NAMES[1])
 
 def setup_logger(log_name, log_path, verbose, level=logging.INFO):
     file_handler = logging.FileHandler(log_path, mode='w+')
@@ -408,7 +408,7 @@ def bytes_to_int(bytes):
 
 
 def dump_str_to_file(content, file_path):
-    with open(file_path, 'w') as f:
+    with open(file_path, 'w+') as f:
         f.write(content)
         f.write('\n')
 

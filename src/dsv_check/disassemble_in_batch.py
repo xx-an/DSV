@@ -47,7 +47,7 @@ def disassemble_bin_files(files, disasm_dir, disasm_type='objdump'):
 if __name__=='__main__':
     parser = argparse.ArgumentParser(description='Disassembly Soundness Verification')
     parser.add_argument('-t', '--disasm_type', default='objdump', type=str, help='Disassembler')
-    parser.add_argument('-l', '--lib', default='litmus-test', type=str, help='Benchmark folder name')
+    parser.add_argument('-e', '--elf_dir', default='benchmark/coreutils-build', type=str, help='Benchmark folder name')
     parser.add_argument('-d', '--disasm_dir', default='litmus-test', type=str, help='Disassembled folder name')
     parser.add_argument('-f', '--file_name', type=str, help='Benchmark file name')
     parser.add_argument('-b', '--batch', default=1, type=int, help='Benchmark file name')

@@ -1444,9 +1444,8 @@ Block exists: lea rsi,[rip+0x3043] at address 0x1996 is visited for 5 times
 0x1533: pop rbp
 0x1534: pop r12
 0x1536: ret
-0x1536: the return address is 0x165a
-0x165a: hlt
-0x165b: nop dword ptr [rax+rax*1+0x0]
+The symbolic execution has been successfully terminated
+
 0x156a: movsxd rax,dword ptr [rip+0x205b1f]
 0x1571: mov esi,0x4
 0x1576: mov edi,0x1
@@ -18695,6 +18694,6 @@ Block exists: mov eax,dword ptr [rsp+0x18] at address 0x3311 is visited for 3 ti
 0x1e7a: jump address is 0x11f0
 0x11f0: jmp qword ptr [rip+0x205c92]
 3147
-2096
+2094
 62
-99.19787693023682
+88.25320816040039

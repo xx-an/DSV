@@ -143,7 +143,7 @@ class CFG(object):
             semantics.call(store, rip)
             next_address = self.sym_table['__libc_csu_init']
             utils.logger.info(hex(address) + ': jump address is ' + sym_helper.string_of_address(next_address))
-            semantics.ext__libc_start_main(store, next_address, self.start_address)
+            semantics.ext__libc_start_main(store, self.main_address)
             self.jump_to_block(block, address, inst, next_address, sym_store, constraint)
         elif ext_func_name == 'pthread_create':
             store, rip, heap_addr = sym_store.store, sym_store.rip, sym_store.heap_addr
@@ -162,10 +162,6 @@ class CFG(object):
             new_heap_addr = semantics.ext_alloc_mem_call(store, rip, sym_store.heap_addr, ext_func_name)
             sym_store.heap_addr = new_heap_addr
             self.build_ret_branch(block, address, inst, sym_store, constraint)
-        elif ext_func_name == 'rand':
-            new_pred = semantics.ext_rand_call(store)
-            new_constraint = Constraint(constraint, new_pred)
-            self.build_ret_branch(block, address, inst, sym_store, new_constraint)
         else:
             semantics.ext_func_call(store, ext_func_name)
             ext_name = ext_func_name.split('@', 1)[0].strip()

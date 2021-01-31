@@ -25,7 +25,19 @@
 0x5384: sub rsp,0x8
 0x5388: sar rbp,0x3
 0x538c: call 0x13e8
-0x538c: the return address is 0x5391
+0x538c: jump address is 0x13e8
+0x13e8: sub rsp,0x8
+0x13ec: mov rax,qword ptr [rip+0x206bf5]
+0x13f3: test rax,rax
+0x13f6: je 0x13fa
+0x13f6: jump address is 0x13fa
+0x13f8: call rax
+0x13f8: the return address is 0x13fa
+Block exists: add rsp,0x8 at address 0x13fa is visited for 1 times
+
+0x13fa: add rsp,0x8
+0x13fe: ret
+0x13fe: the return address is 0x5391
 0x5391: test rbp,rbp
 0x5394: je 0x53b6
 0x5394: jump address is 0x53b6
@@ -30182,9 +30194,8 @@ Block exists: mov rdi,qword ptr [rip+0x2067ce] at address 0x18d3 is visited for 
 0x199d: pop r14
 0x199f: pop r15
 0x19a1: ret
-0x19a1: the return address is 0x1b1a
-0x1b1a: hlt
-0x1b1b: nop dword ptr [rax+rax]
+The symbolic execution has been successfully terminated
+
 0x1a97: call 0x14f0
 0x1a97: jump address is 0x14f0
 0x14f0: jmp qword ptr [rip+0x2069da]
@@ -30984,9 +30995,8 @@ Instruction xor r11d,r11d at address 0x2cf3 is visited for 26 times
 0x199d: pop r14
 0x199f: pop r15
 0x19a1: ret
-0x19a1: the return address is 0x1b1a
-0x1b1a: hlt
-0x1b1b: nop dword ptr [rax+rax]
+The symbolic execution has been successfully terminated
+
 0x1a97: call 0x14f0
 0x1a97: jump address is 0x14f0
 0x14f0: jmp qword ptr [rip+0x2069da]
@@ -31330,9 +31340,8 @@ Block exists: test rax,rax at address 0x1967 is visited for 1 times
 0x199d: pop r14
 0x199f: pop r15
 0x19a1: ret
-0x19a1: the return address is 0x1b1a
-0x1b1a: hlt
-0x1b1b: nop dword ptr [rax+rax]
+The symbolic execution has been successfully terminated
+
 0x1a97: call 0x14f0
 0x1a97: jump address is 0x14f0
 0x14f0: jmp qword ptr [rip+0x2069da]
@@ -32445,9 +32454,8 @@ Instruction xor r11d,r11d at address 0x2cf3 is visited for 26 times
 0x199d: pop r14
 0x199f: pop r15
 0x19a1: ret
-0x19a1: the return address is 0x1b1a
-0x1b1a: hlt
-0x1b1b: nop dword ptr [rax+rax]
+The symbolic execution has been successfully terminated
+
 0x1a97: call 0x14f0
 0x1a97: jump address is 0x14f0
 0x14f0: jmp qword ptr [rip+0x2069da]
@@ -34050,9 +34058,8 @@ Block exists: cmp ebx,0x8 at address 0x191a is visited for 8 times
 0x199d: pop r14
 0x199f: pop r15
 0x19a1: ret
-0x19a1: the return address is 0x1b1a
-0x1b1a: hlt
-0x1b1b: nop dword ptr [rax+rax]
+The symbolic execution has been successfully terminated
+
 0x1a97: call 0x14f0
 0x1a97: jump address is 0x14f0
 0x14f0: jmp qword ptr [rip+0x2069da]
@@ -34171,7 +34178,7 @@ Block exists: movsxd rax,dword ptr [rip+0x20685a] at address 0x1857 is visited f
 0x2b2a: call 0x1430
 0x2b2a: jump address is 0x1430
 0x1430: jmp qword ptr [rip+0x206a3a]
-8053
-2772
-82
-139.04636311531067
+8069
+2777
+84
+134.84945845603943

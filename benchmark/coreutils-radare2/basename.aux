@@ -1,3 +1,8 @@
+0x1257: add byte ptr [rax],al
+0x1259: add byte ptr [rax],al
+0x125b: add byte ptr [rax],al
+0x125d: add byte ptr [rax],al
+0x125f: invalid 
 0x1260: push qword ptr [rip+0x205c0a]
 0x1266: jmp qword ptr [rip+0x205c0c]
 0x126c: nop dword ptr [rax]
@@ -115,6 +120,8 @@
 0x16e5: mov edi,0x1
 0x16ea: call 0x18d0
 0x16ef: nop 
+0x171a: hlt 
+0x171b: nop dword ptr [rax+rax]
 0x1720: lea rdi,[rip+0x205959]
 0x1727: push rbp
 0x1728: lea rax,[rip+0x205951]

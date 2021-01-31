@@ -1443,9 +1443,8 @@ Block exists: mov rdi,rbx at address 0x1b49 is visited for 1 times
 0x18f7: pop r12
 0x18f9: pop r13
 0x18fb: ret
-0x18fb: the return address is 0x1a3a
-0x1a3a: hlt
-0x1a3b: nop dword ptr [rax+rax]
+The symbolic execution has been successfully terminated
+
 0x1a02: call 0x1410
 0x1a02: jump address is 0x1410
 0x1410: jmp qword ptr [rip+0x205aca]
@@ -1534,9 +1533,8 @@ Block exists: and bl,-0x80 at address 0x18ac is visited for 2 times
 0x18f7: pop r12
 0x18f9: pop r13
 0x18fb: ret
-0x18fb: the return address is 0x1a3a
-0x1a3a: hlt
-0x1a3b: nop dword ptr [rax+rax]
+The symbolic execution has been successfully terminated
+
 0x1a02: call 0x1410
 0x1a02: jump address is 0x1410
 0x1410: jmp qword ptr [rip+0x205aca]
@@ -3385,6 +3383,6 @@ trace back
 0x205a: jump address is 0x1360
 0x1360: jmp qword ptr [rip+0x205b22]
 5652
-819
+817
 35
-7.23628568649292
+7.207953214645386

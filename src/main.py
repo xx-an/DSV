@@ -104,8 +104,22 @@ def dsv_batch(elf_lib_dir, disasm_lib_dir, disasm_type, verbose=False):
             time.sleep(60)
             continue
 
+def check_specified_soundness(file_names, elf_lib_dir, disasm_lib_dir, disasm_type, verbose=False):
+    print('\\textsf{' + disasm_type + '}')
+    for file_name in file_names:
+        try:
+            print(file_name)
+            para_list = neat_unreach.main_single(file_name, elf_lib_dir, disasm_lib_dir, disasm_type, False)
+            print(para_list)
+            res = check_soundness(elf_lib_dir, disasm_lib_dir, disasm_type, file_name)
+            check_result = CHECK_RESULTS[0] if res else CHECK_RESULTS[1]
+            print(' & ' + file_name + ' & ' + ' & '.join(list(map(lambda x: str(x), para_list))) + ' & ' + check_result + ' \\\\')
+        except:
+            time.sleep(60)
+            continue
 
 def dsv_specified(file_names, elf_lib_dir, disasm_lib_dir, disasm_type, verbose=False):
+    print('\\textsf{' + disasm_type + '}')
     for file_name in file_names:
         exec_path = os.path.join(elf_lib_dir, file_name)
         disasm_path = os.path.join(disasm_lib_dir, file_name + '.' + disasm_type)
@@ -127,19 +141,22 @@ if __name__=='__main__':
     parser.add_argument('-t', '--disasm_type', default='objdump', type=str, help='Disassembler')
     parser.add_argument('-b', '--batch', default=0, type=int, help='Run dsv_main in batch mode') 
     parser.add_argument('-s', '--soundness', default=False, action='store_true', help='Check the soundness for specific file') 
-    parser.add_argument('-l', '--log_path', default='benchmark/coreutils-objdump', type=str, help='Benchmark library') 
-    parser.add_argument('-e', '--elf_path', default='benchmark/coreutils-build', type=str, help='Elf shared object library') 
+    parser.add_argument('-l', '--log_dir', default='benchmark/coreutils-objdump', type=str, help='Benchmark library') 
+    parser.add_argument('-e', '--elf_dir', default='benchmark/coreutils-build', type=str, help='Elf shared object library') 
     parser.add_argument('-f', '--file_name', type=str, help='Benchmark file name')
     parser.add_argument('-v', '--verbose', default=False, action='store_true', help='Whether to print log information on the screen')
     args = parser.parse_args()
     disasm_type = args.disasm_type
-    disasm_lib_dir = os.path.join(utils.PROJECT_DIR, args.log_path)
-    elf_lib_dir = os.path.join(utils.PROJECT_DIR, args.elf_path)
+    disasm_lib_dir = os.path.join(utils.PROJECT_DIR, args.log_dir)
+    elf_lib_dir = os.path.join(utils.PROJECT_DIR, args.elf_dir)
     if args.soundness:
         if args.batch == 0:
             check_soundness(elf_lib_dir, disasm_lib_dir, disasm_type, args.file_name)
-        else:
-            check_soundness_batch(elf_lib_dir, disasm_lib_dir, disasm_type)    
+        elif args.batch == 1:
+            check_soundness_batch(elf_lib_dir, disasm_lib_dir, disasm_type)   
+        else: 
+            file_names = ['basename', 'expand', 'link', 'mknod', 'uname', 'realpath', 'comm', 'echo']
+            check_specified_soundness(file_names, elf_lib_dir, disasm_lib_dir, disasm_type, args.verbose)
     else:
         if args.batch == 0:
             disasm_path = os.path.join(disasm_lib_dir, args.file_name + '.' + disasm_type)

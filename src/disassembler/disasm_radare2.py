@@ -108,7 +108,7 @@ class Disasm_Radare2(Disasm):
     # line: ';-- section..text:'
     def _parse_section_valid(self, line):
         section_name = line.split(';-- section.')[1].split(':')[0]
-        if section_name in (('.text', '.fini', '.plt', '.plt.got')):
+        if section_name in (('.init', '.text', '.plt', '.plt.got')):
             return True
         else:
             return False
@@ -185,7 +185,11 @@ class Disasm_Radare2(Disasm):
     def _replace_inst_arg(self, address, inst_name, arg, sym_address_str):
         if 'sym.' in arg or 'obj.' in arg or 'reloc.' in arg or 'loc.' in arg or 'entry.' in arg or 'str.' in arg:
             if inst_name == 'lea': 
-                arg = '[' + sym_address_str + ']'
+                if '[' not in arg:
+                    arg = '[' + sym_address_str + ']'
+                else:
+                    sym_name = SYM_NAME_PAT.search(arg).group(0)
+                    arg = arg.replace(sym_name, sym_address_str)
             else:
                 sym_name = SYM_NAME_PAT.search(arg).group(0)
                 arg = arg.replace(sym_name, sym_address_str)

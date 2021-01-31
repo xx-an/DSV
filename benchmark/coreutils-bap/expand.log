@@ -4703,9 +4703,8 @@ Block exists: mov rdi,qword ptr [rip+0x2067ce] at address 0x18d3 is visited for 
 0x199d: pop r14
 0x199f: pop r15
 0x19a1: ret
-0x19a1: the return address is 0x1b1a
-0x1b1a: hlt
-0x1b1b: nop dword ptr [rax+rax]
+The symbolic execution has been successfully terminated
+
 0x1a97: call 0x14f0
 0x1a97: jump address is 0x14f0
 0x14f0: jmp qword ptr [rip+0x2069da]
@@ -5254,9 +5253,8 @@ Block exists: mov rdi,qword ptr [rip+0x2067ce] at address 0x18d3 is visited for 
 0x199d: pop r14
 0x199f: pop r15
 0x19a1: ret
-0x19a1: the return address is 0x1b1a
-0x1b1a: hlt
-0x1b1b: nop dword ptr [rax+rax]
+The symbolic execution has been successfully terminated
+
 0x1a97: call 0x14f0
 0x1a97: jump address is 0x14f0
 0x14f0: jmp qword ptr [rip+0x2069da]
@@ -5563,9 +5561,8 @@ Block exists: test rax,rax at address 0x1967 is visited for 1 times
 0x199d: pop r14
 0x199f: pop r15
 0x19a1: ret
-0x19a1: the return address is 0x1b1a
-0x1b1a: hlt
-0x1b1b: nop dword ptr [rax+rax]
+The symbolic execution has been successfully terminated
+
 0x1a97: call 0x14f0
 0x1a97: jump address is 0x14f0
 0x14f0: jmp qword ptr [rip+0x2069da]
@@ -6108,9 +6105,8 @@ trace back
 0x199d: pop r14
 0x199f: pop r15
 0x19a1: ret
-0x19a1: the return address is 0x1b1a
-0x1b1a: hlt
-0x1b1b: nop dword ptr [rax+rax]
+The symbolic execution has been successfully terminated
+
 0x1a97: call 0x14f0
 0x1a97: jump address is 0x14f0
 0x14f0: jmp qword ptr [rip+0x2069da]
@@ -7226,9 +7222,8 @@ Block exists: cmp ebx,0x8 at address 0x191a is visited for 8 times
 0x199d: pop r14
 0x199f: pop r15
 0x19a1: ret
-0x19a1: the return address is 0x1b1a
-0x1b1a: hlt
-0x1b1b: nop dword ptr [rax+rax]
+The symbolic execution has been successfully terminated
+
 0x1a97: call 0x14f0
 0x1a97: jump address is 0x14f0
 0x14f0: jmp qword ptr [rip+0x2069da]
@@ -7348,6 +7343,6 @@ Block exists: movsxd rax,dword ptr [rip+0x20685a] at address 0x1857 is visited f
 0x2b2a: jump address is 0x1430
 0x1430: jmp qword ptr [rip+0x206a3a]
 7373
-1449
+1447
 65
-17.601712465286255
+20.578462600708008

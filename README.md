@@ -12,8 +12,8 @@ DSV
 |   |--coretuils-bap
 |   |--coretuils-ghidra
 |   |--coreutils-dyninst
-|--litmus-tests
-|--micro-benchmarks
+|--litmus-test
+|--micro-benchmark
 |--src
 |--lib
 |   |--ghidra_9.0.4
@@ -24,87 +24,34 @@ DSV
 
 Prerequisites:
     python3 (>= 3.7.1)
-    
+    objdump (>= 2.30)
+    radare2 (3.7.1)
+    angr (8.19.7.25)
+    BAP (1.6.0)
+    Ghidra (9.0.4)
+    Dyninst(10.2.1)
 
-    OCaml (= 4.07.0)
-              OCaml libraries: depext ocamlbuild utop yojson zarith num omd menhir linenoise async_unix
-	PVS (= 7.0.639)
-		http://www.csl.sri.com/users/owre/drop/pvs-snapshots/
+Note:
+    -- The compiled binary files for Coreutils are located at DSV/benchmark/coreutils-build
+    -- The test cases used in Section 5.2 is stored in DSV/litmus-test
+    -- A package of Ghidra and Dyninst has been stored in the DSV/lib directory
 
 
-'''
-python -m src.dsv_check.neat_unreach -t radare2 -f basename -l benchmark/coreutils-build -L benchmark/coreutils-radare2 -d benchmark/coreutils-objdump
-'''
+Apply DSV to construct a CFG on a specific file disasembled by a disassembler and get the information regarding # of instructions and unreachable instructions ...
+$ python -m src.main -e benchmark/coreutils-build -l benchmark/coreutils-radare2 -t radare2 -f basename
 
+Apply DSV to validate the soundness and report all the incorrectly disassembled instructions
+$ python -m src.main -e benchmark/coreutils-build -l benchmark/coreutils-radare2 -t radare2 -f basename -s
 
-3. Generate the CFG construction results of callback function in litmus-tests folder for dyninst disassembler
-$ python -m src.main -p litmus-tests -e litmus-tests -f callback -d dyninst
+Use DSV to build up the CFG for all the files under a directory
+$ python -m src.main -e benchmark/coreutils-build -l benchmark/coreutils-radare2 -t radare2 -b
 
-Install lem/linksem/sail and setup the environment for Sail-to-PVS parser
-1. Download lem:
-$ git clone https://github.com/rems-project/lem
+Use DSV to validate the soundness of all the files under a directory
+$ python -m src.main -e benchmark/coreutils-build -l benchmark/coreutils-radare2 -t radare2 -b -s
 
-2. Set up the Sail to PVS parser environment
-$ cd Sail2PVS
-$ ./sail2pvs.py --setup
-$ cd ..
+Execute neat_unreach to detect whether an unreachable instruction is really black
+$ python -m src.dsv_check.neat_unreach -e benchmark/coreutils-build -l benchmark/coreutils-radare2 -f basename -t radare2 -v
 
-3. Make and install Lem
-$ cd lem
-$ make
-$ cd ocaml-lib
-$ make install
-$ cd ../..
+Compare the outputs from a disassembler with objdump to find the inconsistency
+$ python -m src.dsv_check.disasm_diff -l benchmark/coreutils-radare2 -f basename -t radare2
 
-4. Generate PVS files for the Lem basic library
-$ cd Sail2PVS
-$ ./sail2pvs.py --library
-$ cd ..
-
-5. Configure and install linksem/ott/sail
-$ git clone https://github.com/rems-project/linksem.git
-$ cd linksem
-$ make && make install
-$ cd ..
-$ git clone https://github.com/ott-lang/ott.git
-$ cd ott
-$ make
-$ export LEM_DIR=$PWD
-$ cd ..
-Configure the environment variable:
-    export LEMLIB=/path/to/lem/library
-    export PATH=/path/to/ott/bin:/path/to/lem:${PATH}
-$ git clone https://github.com/rems-project/sail.git
-$ cd sail
-$ make
-$ make isail
-$ sudo apt install m4 libgmp-dev z3
-$ export SAIL_DIR=$PWD
-$ test/run_tests.sh
-$ cd ..
-Configure the environment variable:
-    export SAIL_DIR=/path/to/sail
-    export PVS_HOME=/path/to/pvs
-
-The structure of all the required directories:
--- lem
--- linksem
--- ott
--- sail
--- Sail2PVS
--- OPEV
-
-Automatically translate a Sail project to OCaml and PVS (For example, mips):
-1. Download the Cheri/Mips specification
-$ git clone https://github.com/CTSRD-CHERI/sail-cheri-mips.git
-2. Add the detailed information regarding the Sail project to tag.json, for example:
-    "mips": {
-        "sail_src_path": "../sail-cheri-mips/mips",
-        "sail_src_files": "trace.sail prelude.sail mips_prelude.sail mips_tlb_stub.sail mips_wrappers.sail mips_ast_decl.sail mips_insts.sail mips_ri.sail mips_epilogue.sail",
-        "lem_src_files": "mips_no_tlb.lem mips_extras.lem",
-        "lem_embedded_lib": "Mips_extras",
-        "lem_object_name": "mips_no_tlb",
-        "target_dir": "./pvs_mips"
-    }
-3. Under the Sail2PVS directory:
-$ ./sail2pvs.py --parse mips

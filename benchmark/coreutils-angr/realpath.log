@@ -2506,9 +2506,8 @@ Block exists: add rsp,0x8 at address 0x1e69 is visited for 1 times
 0x1b36: pop r14
 0x1b38: pop r15
 0x1b3a: ret
-0x1b3a: the return address is 0x1cba
-0x1cba: hlt
-0x1cbb: nop dword ptr [rax+rax]
+The symbolic execution has been successfully terminated
+
 0x1abe: cdqe
 0x1ac0: mov esi,ebx
 0x1ac2: mov r15,qword ptr [rbp+rax*8]
@@ -8222,9 +8221,8 @@ Block exists: mov eax,dword ptr [rip+0x208600] at address 0x1aaa is visited for 
 0x1b36: pop r14
 0x1b38: pop r15
 0x1b3a: ret
-0x1b3a: the return address is 0x1cba
-0x1cba: hlt
-0x1cbb: nop dword ptr [rax+rax]
+The symbolic execution has been successfully terminated
+
 0x1a30: mov r9,qword ptr [rip+0x2086c1]
 Block exists: test r9,r9 at address 0x1a37 is visited for 1 times
 
@@ -23487,6 +23485,6 @@ Block exists: mov r13d,ebx at address 0x1989 is visited for 1 times
 0x41aa: jump address is 0x14c0
 0x14c0: jmp qword ptr [rip+0x208982]
 5933
-2647
+2645
 75
-89.54463863372803
+98.64548254013062

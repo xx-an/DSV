@@ -133,7 +133,7 @@ def remove_invalid_inst(aux_path, disasm_asm):
 def normalize_unreachable(aux_path, disasm_asm, graph):
     new_content, unreach_addresses = remove_invalid_inst(aux_path, disasm_asm)
     new_content = remove_implicit_called_functions(new_content, unreach_addresses, disasm_asm, graph)
-    with open(aux_path, 'w') as f:
+    with open(aux_path, 'w+') as f:
         f.write(new_content)
 
 
@@ -170,7 +170,7 @@ def read_parameters(log_path):
     return res, res_list
 
 
-def main(file_name, disasm_asm, graph, log_path, new_aux_path):
+def neat_main(file_name, disasm_asm, graph, log_path, new_aux_path):
     global cnt, grey_cnt, print_info, _start_segment_address
     cnt = 0
     grey_cnt = 0
@@ -198,7 +198,7 @@ def main_single(file_name, exec_dir, log_dir, disasm_type, verbose):
     disasm_asm = Disasm_Objdump(disasm_path)
     ei = ELF_Info(exec_path)
     cg = Construct_Graph(disasm_asm, new_log_path, ei)
-    para_list = main(file_name, disasm_asm, cg, log_path, new_aux_path)
+    para_list = neat_main(file_name, disasm_asm, cg, log_path, new_aux_path)
     if verbose:
         print(print_info)
     return para_list

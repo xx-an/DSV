@@ -18,10 +18,6 @@ import os
 import argparse
 from ..common import utils
 
-'''
-$ python -m src.dsv_check.disasm_diff -t radare2 -l benchmark/coreutils-radare2 -d benchmark/coreutils-objdump -f basename
-'''
-
 def check_diff(log_path, objdump_log_path):
     with open(log_path, 'r') as lf:
         with open(objdump_log_path, 'r') as of:
@@ -57,12 +53,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Difference between the generated log file for various disassemblers')
     parser.add_argument('-t', '--disasm_type', default='objdump', type=str, help='Disassembler')
     parser.add_argument('-f', '--file_name', type=str, help='Benchmark file name')
-    parser.add_argument('-l', '--log_dir', default='litmus-test', type=str, help='Log file folder name')
-    parser.add_argument('-d', '--objdump_dir', default='litmus-test', type=str, help='Objdump folder name')
+    parser.add_argument('-l', '--log_dir', default='benchmark/coreutils-objdump', type=str, help='Log file folder name')
+    parser.add_argument('-o', '--objdump_dir', default='benchmark/coreutils-objdump', type=str, help='Log file folder name')
     args = parser.parse_args()
-    lib_name = 'coreutils'
-    objdump_dir = os.path.join(utils.PROJECT_DIR, args.objdump_dir)
     log_dir = os.path.join(utils.PROJECT_DIR, args.log_dir)
+    objdump_dir = os.path.join(utils.PROJECT_DIR, args.objdump_dir)
     file_name = args.file_name
     objdump_log_path = os.path.join(objdump_dir, file_name + '.log')
     log_path = os.path.join(log_dir, file_name + '.log')
