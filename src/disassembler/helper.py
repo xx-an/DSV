@@ -100,7 +100,7 @@ def disassemble_radare2(exec_path, asm_path):
     for sec_name in (('.init', '.plt', '.plt.got', '.text')):
         if sec_name in sec_size_table:
             r.cmd('s section.' + sec_name)
-            res += r.cmd('pD ' + str(sec_size_table[sec_name]))
+            res += r.cmd('pDr ' + str(sec_size_table[sec_name]))
     with open(asm_path, 'w+') as f:
         f.write(res)
 

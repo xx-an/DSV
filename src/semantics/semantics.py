@@ -458,6 +458,7 @@ def ext_alloc_mem_call(store, rip, heap_addr, ext_func_name):
     else:
         mem_size = utils.MAX_MALLOC_SIZE
         heap_addr += mem_size
+    utils.MAX_HEAP_ADDR = max(utils.MAX_HEAP_ADDR, heap_addr)
     dests = ext_func_helper.regs_str_to_list('rcx, rdx, rsi, rdi, r8, r9, r10, r11')
     ext_func_helper.set_regs_sym(store, rip, dests)
     ext_func_helper.clear_flags(store)

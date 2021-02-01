@@ -28,7 +28,10 @@ from enum import Enum
 MAX_VISIT_COUNT = 25
 MAX_TRACEBACK_COUNT = 15
 MAX_INST_ADDR_GAP = 25
+
 MAX_MALLOC_SIZE = 16711568
+MIN_HEAP_ADDR = 0x10000000
+MAX_HEAP_ADDR = MIN_HEAP_ADDR
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(os.path.realpath(__file__)))))
 

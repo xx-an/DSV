@@ -152,28 +152,42 @@ def get_effective_address(store, rip, src, length=lib.DEFAULT_REG_LEN):
 
 
 def set_mem_sym(store, address, sym, length=lib.DEFAULT_REG_LEN):
-    byte_len = length // 8
-    if address in store[lib.MEM]:
-        prev_sym = store[lib.MEM][address]
-        prev_len = prev_sym.size() // 8
-        if byte_len < prev_len:
-            sym, byte_len = simplify(Concat(sym_helper.extract_bytes(prev_len, byte_len, prev_sym), sym)), prev_len
-    store[lib.MEM][address] = sym
-    for offset in range(-7, byte_len):
-        if offset != 0:
-            curr_address = simplify(address + offset)
-            if curr_address in store[lib.MEM]:
-                prev_sym = store[lib.MEM][curr_address]
-                prev_len = prev_sym.size() // 8
-                if offset < 0 and prev_len > -offset:
-                    store[lib.MEM][curr_address] = simplify(sym_helper.extract_bytes(-offset, 0, prev_sym))
-                elif offset > 0:
-                    sym_helper.remove_memory_content(store, curr_address)
-                    if prev_len - byte_len + offset > 0:
-                        new_address = simplify(address + byte_len)
-                        new_sym = simplify(sym_helper.extract_bytes(prev_len, byte_len - offset, prev_sym))
-                        store[lib.MEM][new_address] = new_sym
-                        break
+    if not sym_helper.sym_is_int_or_bitvecnum(address):
+        to_be_deleted = []
+        for addr in store[lib.MEM]:
+            if not sym_helper.sym_is_int_or_bitvecnum(addr):
+                to_be_deleted.append(addr)
+            else:
+                int_addr = sym_helper.int_from_sym(addr)
+                if int_addr >= utils.MIN_HEAP_ADDR and int_addr < utils.MAX_HEAP_ADDR:
+                    to_be_deleted.append(addr)
+        for addr in to_be_deleted:
+            del store[lib.MEM][addr]
+            if addr in store[lib.AUX_MEM]:
+                store[lib.AUX_MEM].remove(addr)
+    else:
+        byte_len = length // 8
+        if address in store[lib.MEM]:
+            prev_sym = store[lib.MEM][address]
+            prev_len = prev_sym.size() // 8
+            if byte_len < prev_len:
+                sym, byte_len = simplify(Concat(sym_helper.extract_bytes(prev_len, byte_len, prev_sym), sym)), prev_len
+        store[lib.MEM][address] = sym
+        for offset in range(-7, byte_len):
+            if offset != 0:
+                curr_address = simplify(address + offset)
+                if curr_address in store[lib.MEM]:
+                    prev_sym = store[lib.MEM][curr_address]
+                    prev_len = prev_sym.size() // 8
+                    if offset < 0 and prev_len > -offset:
+                        store[lib.MEM][curr_address] = simplify(sym_helper.extract_bytes(-offset, 0, prev_sym))
+                    elif offset > 0:
+                        sym_helper.remove_memory_content(store, curr_address)
+                        if prev_len - byte_len + offset > 0:
+                            new_address = simplify(address + byte_len)
+                            new_sym = simplify(sym_helper.extract_bytes(prev_len, byte_len - offset, prev_sym))
+                            store[lib.MEM][new_address] = new_sym
+                            break
             
     
 def get_mem_sym(store, address, length=lib.DEFAULT_REG_LEN):

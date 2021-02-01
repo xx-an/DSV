@@ -39,7 +39,7 @@ class Sym_Store:
                     self.store[name] = set()
                 else:
                     self.store[name] = {}
-            self.heap_addr = 0x10000000
+            self.heap_addr = utils.MIN_HEAP_ADDR
         if inst and not utils.check_branch_inst_wo_call(inst):
             self.parse_semantics(inst)
 
@@ -112,8 +112,10 @@ class Sym_Store:
             if val is not None:
                 if not sym_helper.bitvec_eq(val, vi):
                     return False
-            # else:
-            #     return False
+        # for ki in other_v:
+        #     val = v.get(ki, None)
+        #     if val is None:
+        #         return False
         return True
 
 
