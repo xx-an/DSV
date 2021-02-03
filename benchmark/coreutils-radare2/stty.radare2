@@ -1,3 +1,18 @@
+;-- section..init:
+;-- .init:
+;-- _init:
+0x000023e0      4883ec08       sub rsp, 8                              ; [11] -r-x section size 23 named .init
+0x000023e4      488b05fdeb20.  mov rax, qword [reloc.__gmon_start]     ; [0x210fe8:8]=0
+0x000023eb      4885c0         test rax, rax
+0x000023ee      7402           je 0x23f2
+0x000023f0      ffd0           call rax
+0x000023f2      4883c408       add rsp, 8
+0x000023f6      c3             ret
+0x000023f7      0000           add byte [rax], al
+0x000023f9      0000           add byte [rax], al
+0x000023fb      0000           add byte [rax], al
+0x000023fd      0000           add byte [rax], al
+0x000023ff      00             invalid
 ;-- section..plt:
 ;-- .plt:
 0x00002400      ff35eae92000   push qword [0x00210df0]                 ; [12] -r-x section size 960 named .plt

@@ -38,7 +38,10 @@ def set_regs_sym(store, rip, dests):
 def set_segment_regs_sym(store, rip):
     dest_list = lib.SEG_REGS
     for dest in dest_list:
-        sym_engine.set_sym(store, rip, dest, sym_helper.gen_seg_reg_sym(dest))
+        if dest == 'ds':
+            sym_engine.set_sym(store, rip, dest, sym_helper.bit_vec_val_sym(utils.SEGMENT_REG_INIT_VAL))
+        else:
+            sym_engine.set_sym(store, rip, dest, sym_helper.gen_seg_reg_sym(dest))
 
 def set_reg_val(store, rip, dest, val=0):
     sym_engine.set_sym(store, rip, dest, sym_helper.bit_vec_val_sym(val))

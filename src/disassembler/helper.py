@@ -23,6 +23,7 @@ import r2pipe
 
 from ..common import lib
 from ..common import utils
+from ..common import global_var
 
 BYTE_LEN_REPS = {
     'byte': 'byte', 
@@ -58,7 +59,8 @@ remote_addr_pat = re.compile('0x2[0-9a-fA-F]{5}')
 
 
 def disassemble_to_asm(exec_path, disasm_path, disasm_type='objdump'):
-    if disasm_type == 'radare2':
+    if os.path.exists(disasm_path): return
+    elif disasm_type == 'radare2':
         disassemble_radare2(exec_path, disasm_path)
     elif disasm_type == 'objdump':
         cmd = 'objdump -M intel -d ' + exec_path + ' > ' + disasm_path
@@ -100,7 +102,7 @@ def disassemble_radare2(exec_path, asm_path):
     for sec_name in (('.init', '.plt', '.plt.got', '.text')):
         if sec_name in sec_size_table:
             r.cmd('s section.' + sec_name)
-            res += r.cmd('pDr ' + str(sec_size_table[sec_name]))
+            res += r.cmd('pD ' + str(sec_size_table[sec_name]))
     with open(asm_path, 'w+') as f:
         f.write(res)
 
@@ -111,6 +113,7 @@ def disassemble_ghidra(exec_path, asm_path):
     cmd += ' -import ' + exec_path
     cmd += ' -scriptPath ' + os.path.join(utils.PROJECT_DIR, 'src/disassembler/')
     cmd += ' -postScript ghidra_disasm.py'
+    cmd += ' ' + str(global_var.elf_info.code_base_addr)
     res = utils.execute_command(cmd)
     lines = res.split('\n')
     with open(asm_path, 'w+') as f:
@@ -321,6 +324,13 @@ def rewrite_att_inst_name(name, inst):
     return res, word_ptr_rep
 
 
+def format_bap_lea_inst_arg(name, arg):
+    res = arg
+    if name == 'lea':
+        if utils.imm_pat.match(arg):
+            res = '[' + arg + ']'
+    return res
+
 def reconstruct_dyninst_memory_rep(arg):
     res = '['
     arg_split = arg.split('(', 1)
@@ -430,6 +440,12 @@ def convert_to_hex_rep(arg):
     res = arg
     if re.match(r'^[0-9a-f]+$|^-[0-9a-f]+$', arg):
         res = hex(int(arg, 16))
+    return res
+
+def norm_objdump_arg(name, arg):
+    res = arg
+    if name == 'fdivrp' and arg == 'st':
+        res = 'st(0)'
     return res
 
 

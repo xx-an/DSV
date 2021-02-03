@@ -18,6 +18,7 @@ import os
 import argparse
 
 from ..common import utils
+from ..common import global_var
 from ..disassembler import helper
 
 '''
@@ -27,43 +28,45 @@ $ python -m src.dsv_check.disassemble_in_batch -l benchmark/coreutils-build -d b
 INFIX = '.'
 
 def disassemble_single(exec_path, disasm_dir, disasm_type='objdump'):
+    global_var.get_elf_info(exec_path)
     file_name = utils.get_file_name(exec_path)
     new_path = os.path.join(disasm_dir, file_name + INFIX + disasm_type)
     utils.make_dir(os.path.dirname(new_path))
     helper.disassemble_to_asm(exec_path, new_path, disasm_type)
 
 
-def disassemble_file_for_disassemblers(file_path):
+def disassemble_file_for_disassemblers(exec_path):
     for disasm_type in ['objdump', 'angr', 'ghidra', 'bap', 'radare2', 'dyninst']:
-        new_path = file_path + INFIX + disasm_type
-        helper.disassemble_to_asm(file_path, new_path, disasm_type)
+        global_var.get_elf_info(exec_path)
+        new_path = exec_path + INFIX + disasm_type
+        helper.disassemble_to_asm(exec_path, new_path, disasm_type)
 
 
 def disassemble_bin_files(files, disasm_dir, disasm_type='objdump'):
-    for file_path in files:
-        disassemble_single(file_path, disasm_dir, disasm_type)
+    for exec_path in files:
+        disassemble_single(exec_path, disasm_dir, disasm_type)
 
 
 if __name__=='__main__':
     parser = argparse.ArgumentParser(description='Disassembly Soundness Verification')
     parser.add_argument('-t', '--disasm_type', default='objdump', type=str, help='Disassembler')
     parser.add_argument('-e', '--elf_dir', default='benchmark/coreutils-build', type=str, help='Benchmark folder name')
-    parser.add_argument('-d', '--disasm_dir', default='litmus-test', type=str, help='Disassembled folder name')
+    parser.add_argument('-d', '--disasm_dir', default='benchmark/coreutils-objdump', type=str, help='Disassembled folder name')
     parser.add_argument('-f', '--file_name', type=str, help='Benchmark file name')
     parser.add_argument('-b', '--batch', default=1, type=int, help='Benchmark file name')
     args = parser.parse_args()
     if args.batch == 0:
-        file_path = os.path.join(utils.PROJECT_DIR, os.path.join(args.lib, args.file_name))
+        exec_path = os.path.join(utils.PROJECT_DIR, os.path.join(args.elf_dir, args.file_name))
         disasm_dir = os.path.join(utils.PROJECT_DIR, args.disasm_dir)
-        disassemble_single(file_path, disasm_dir, args.disasm_type)    
+        disassemble_single(exec_path, disasm_dir, args.disasm_type)    
     elif args.batch == 1:
-        dir_path = os.path.join(utils.PROJECT_DIR, args.lib)
+        dir_path = os.path.join(utils.PROJECT_DIR, args.elf_dir)
         disasm_dir = os.path.join(utils.PROJECT_DIR, args.disasm_dir)
         files = utils.get_executable_files(dir_path)
-        for file_path in files:
-            print(file_path.rsplit('/', 1)[1].strip())
+        for exec_path in files:
+            print(exec_path.rsplit('/', 1)[1].strip())
         disassemble_bin_files(files, disasm_dir, args.disasm_type)
     elif args.batch == 2:
-        file_path = os.path.join(utils.PROJECT_DIR, os.path.join(args.lib, args.file_name))
-        disassemble_file_for_disassemblers(file_path)
+        exec_path = os.path.join(utils.PROJECT_DIR, os.path.join(args.elf_dir, args.file_name))
+        disassemble_file_for_disassemblers(exec_path)
 

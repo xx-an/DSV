@@ -217,7 +217,7 @@ trace back
 0x1572: movzx eax,al
 0x156c: ja 0x17a6
 0x156a: cmp al,0x48
-0x157c: jump addresses resolved using jump table [5994, 5943, 6054, 5832, 5898, 5928, 5881, 5913, 6158, 6143, 6128, 6113, 6098, 6018]
+0x157c: jump addresses resolved using jump table [0x176a, 0x1737, 0x17a6, 0x16c8, 0x170a, 0x1728, 0x16f9, 0x1719, 0x180e, 0x17ff, 0x17f0, 0x17e1, 0x17d2, 0x1782]
 0x157c: jmp rax
 0x157c: jump address is 0x1782
 0x1782: movzx edi,byte ptr [rbx+0x2]
@@ -253,7 +253,7 @@ trace back
 0x1aa7: lea rdx,[rip+0x2e96]
 0x1aa5: ja 0x1b20
 0x1aa3: cmp al,0x25
-0x1ab8: jump addresses resolved using jump table [6848, 6864, 6880, 6896, 6912, 6928, 6944]
+0x1ab8: jump addresses resolved using jump table [0x1ac0, 0x1ad0, 0x1ae0, 0x1af0, 0x1b00, 0x1b10, 0x1b20]
 0x1ab8: jmp rax
 0x1ab8: jump address is 0x1b20
 Block exists: movzx edi,dil at address 0x1b20 is visited for 1 times
@@ -804,7 +804,7 @@ trace back
 0x3db6: lea rdx,[rip+0x1b4b]
 0x3db0: ja 0x40f0
 0x3dac: cmp r12,0x9
-0x3dc4: jump addresses resolved using jump table [15942, 16088, 16152, 16224, 16304, 16392, 16440, 16544, 15824, 16000]
+0x3dc4: jump addresses resolved using jump table [0x3e46, 0x3ed8, 0x3f18, 0x3f60, 0x3fb0, 0x4008, 0x4038, 0x40a0, 0x3dd0, 0x3e80]
 0x3dc4: jmp rax
 0x3dc4: jump address is 0x3e80
 0x3e80: mov r10,qword ptr [rbx+0x40]
@@ -2262,4 +2262,4 @@ Block exists: mov rdi,qword ptr [rip+0x2059a8] at address 0x16d9 is visited for 
 3313
 972
 39
-4.000992774963379
+6.422358274459839

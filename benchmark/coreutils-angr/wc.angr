@@ -6307,6 +6307,34 @@
 
 
 
+0x30c5:	and	r14, 0xfffffffffffffff8
+0x30c9:	add	r14, 8
+0x30cd:	jmp	0x3058
+
+
+0x3085:	mov	rax, qword ptr [rsp + 0x28]
+0x308a:	cmp	rax, r14
+0x308d:	cmovae	r14, rax
+0x3091:	mov	qword ptr [rsp + 0x28], r14
+0x3096:	xor	r14d, r14d
+0x3099:	jmp	0x3058
+
+
+0x304d:	add	r14, 1
+0x3051:	nop	dword ptr [rax]
+0x3058:	add	qword ptr [rsp + 0x20], rbx
+0x305d:	xor	ebx, ebx
+0x305f:	add	r12, rdx
+0x3062:	sub	r15, rdx
+0x3065:	add	rbp, 1
+0x3069:	test	r15, r15
+0x306c:	jne	0x2da8
+
+
+0x30b5:	add	qword ptr [rsp], 1
+0x30ba:	jmp	0x3085
+
+
 0x6320:	lea	rsi, [rip + 0x1c31]
 0x6327:	mov	edx, 5
 0x632c:	xor	edi, edi
@@ -6424,34 +6452,6 @@
 0x6392:	mov	r12, qword ptr [rbx + 8]
 0x6396:	mov	rbx, qword ptr [rbx]
 0x6399:	call	0x1a80
-
-
-0x30c5:	and	r14, 0xfffffffffffffff8
-0x30c9:	add	r14, 8
-0x30cd:	jmp	0x3058
-
-
-0x3085:	mov	rax, qword ptr [rsp + 0x28]
-0x308a:	cmp	rax, r14
-0x308d:	cmovae	r14, rax
-0x3091:	mov	qword ptr [rsp + 0x28], r14
-0x3096:	xor	r14d, r14d
-0x3099:	jmp	0x3058
-
-
-0x304d:	add	r14, 1
-0x3051:	nop	dword ptr [rax]
-0x3058:	add	qword ptr [rsp + 0x20], rbx
-0x305d:	xor	ebx, ebx
-0x305f:	add	r12, rdx
-0x3062:	sub	r15, rdx
-0x3065:	add	rbp, 1
-0x3069:	test	r15, r15
-0x306c:	jne	0x2da8
-
-
-0x30b5:	add	qword ptr [rsp], 1
-0x30ba:	jmp	0x3085
 
 
 0x639e:	push	r15

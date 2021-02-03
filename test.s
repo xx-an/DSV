@@ -1,2 +1,2 @@
 .intel_syntax noprefix
-mov byte ptr [rax],0x20
+call 0x1430

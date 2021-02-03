@@ -5,12 +5,11 @@ _start:
 mov    rax, 1
 mov    rbx, 2
 add    rax, rbx
-cmp    rdi, 0x5
+cmp    rdi, 0x3
 ja     foo
 mov    eax, edi
-lea    rdx, [rax*4+0x0]
-lea    rax, [.jt]
-add    rax,rdx
+lea    rdx, [.jt]
+mov    rax, qword ptr [rdx+rax*8]
 jmp    rax
 .L1:
 add    rbx, 2

@@ -26,12 +26,19 @@ from . import lib
 from enum import Enum
 
 MAX_VISIT_COUNT = 25
-MAX_TRACEBACK_COUNT = 15
+
+MAX_TRACEBACK_COUNT = 20
 MAX_INST_ADDR_GAP = 25
 
 MAX_MALLOC_SIZE = 16711568
 MIN_HEAP_ADDR = 0x10000000
 MAX_HEAP_ADDR = MIN_HEAP_ADDR
+
+INIT_STACK_FRAME_POINTER = 2**48-9
+MAX_DEVIATION = 5
+SEGMENT_REG_INIT_VAL = 0
+
+DISASM_TYPES = ['objdump', 'radare2', 'angr', 'bap', 'ghidra', 'dyninst']
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(os.path.realpath(__file__)))))
 

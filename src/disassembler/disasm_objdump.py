@@ -93,6 +93,7 @@ class Disasm_Objdump(Disasm):
     def _format_arg(self, address, inst_name, arg):
         res = arg.lower()
         res = helper.convert_to_hex_rep(res)
+        res = helper.norm_objdump_arg(inst_name, res)
         return res
 
 

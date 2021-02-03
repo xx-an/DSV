@@ -3,7 +3,6 @@ from ghidra.app.cmd.disassemble import DisassembleCommand
 from ghidra.app.script import GhidraScript
 from ghidra.program.model.address import AddressSet
 
-GHIDRA_BASE = 0x100000
 # addset = AddressSet()
 # addset.add(currentAddress)
 # print(currentProgram.getLanguage().getProcessor())
@@ -14,7 +13,10 @@ GHIDRA_BASE = 0x100000
 # activeAddr = currentLocation.getByteAddress()
 # print(activeAddr)
 # print(res)
-currentProgram.setImageBase(currentAddress.subtract(GHIDRA_BASE), True)
+args = getScriptArgs()
+code_base_addr = int(args[0])
+curr_base_addr = currentProgram.getImageBase().getOffset()
+currentProgram.setImageBase(currentAddress.subtract(curr_base_addr-code_base_addr), True)
 execMemSet = currentProgram.getMemory()
 instIter = currentProgram.getListing().getInstructions(execMemSet, True)
 result = ''

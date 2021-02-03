@@ -259,6 +259,7 @@ if __name__ == '__main__':
     if args.batch == 0:
         para_list = main_single(args.file_name, exec_dir, log_dir, args.disasm_type, args.verbose)
         print(args.file_name + ' ' + ' '.join(list(map(lambda x: str(x), para_list))))
+        print(args.file_name + ' & ' + ' & '.join(list(map(lambda x: str(x), para_list))))
     elif args.batch == 1:
         workbook = create_statistics_xlsw()
         main_batch(exec_dir, log_dir, args.disasm_type, workbook)

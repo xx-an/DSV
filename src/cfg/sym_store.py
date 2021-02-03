@@ -88,7 +88,7 @@ class Sym_Store:
                     v[ki] = sym_helper.merge_sym(val, vi, address_inst_map)
 
 
-    def aux_mem_eq(self, other, k=lib.AUX_MEM):
+    def aux_mem_eq(self, other, address_inst_map, k=lib.AUX_MEM):
         v = self.store[k]
         v_mem = self.store[lib.MEM]
         other_v = other.store[lib.MEM]
@@ -96,21 +96,21 @@ class Sym_Store:
             vi = v_mem[ki]
             val = other_v.get(ki, None)
             if val is not None:
-                if not sym_helper.bitvec_eq(val, vi):
+                if not sym_helper.bitvec_eq(val, vi, address_inst_map):
                     return False
             else:
                 return False
         return True
 
 
-    def state_ith_eq(self, other, k=lib.REG):
-        v = self.store[k]
-        other_v = other.store[k]
-        for ki in v:
-            vi = v[ki]
-            val = other_v.get(ki, None)
-            if val is not None:
-                if not sym_helper.bitvec_eq(val, vi):
+    def state_ith_eq(self, old, address_inst_map, k=lib.REG):
+        s = self.store[k]
+        s_old = old.store[k]
+        for k in s:
+            v = s[k]
+            v_old = s_old.get(k, None)
+            if v_old is not None:
+                if not sym_helper.bitvec_eq(v_old, v, address_inst_map):
                     return False
         # for ki in other_v:
         #     val = v.get(ki, None)
@@ -119,19 +119,12 @@ class Sym_Store:
         return True
 
 
-    def state_equal(self, other):
+    def state_equal(self, old, address_inst_map):
         for k in lib.RECORD_STATE_NAMES:
-            res = self.state_ith_eq(other, k)
+            res = self.state_ith_eq(old, address_inst_map, k)
             if not res:
                 return False
         return True
-
-
-    def __eq__(self, other):
-        if isinstance(other, Sym_Store):
-            return self.state_equal(other)
-        else:
-            return False
 
 
     def draw_store_val(self, val):

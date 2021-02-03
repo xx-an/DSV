@@ -131,7 +131,9 @@ class CFG(object):
         else:
             if constraint is not None:
                 res = self._check_path_reachability(constraint)
-                if res == False: return
+                if res == False: 
+                    utils.logger.info('The path is infeasible at the jump address ' + sym_helper.string_of_address(new_address) + ' of ' + inst + ' at address ' + hex(address) + '\n')
+                    return
             utils.logger.info('Cannot resolve the jump address ' + sym_helper.string_of_address(new_address) + ' of ' + inst + ' at address ' + hex(address))
             # sys.exit('Cannot resolve the jump address ' + sym_helper.string_of_address(new_address) + ' of ' + inst + ' at address ' + hex(address))
                 
@@ -231,7 +233,7 @@ class CFG(object):
                 sym_store_list = self._reconstruct_jt_branches(jt_assign_blk, distinct_entries, inst_dest, src_len)
                 dest, target_addresses = self._reconstruct_jump_target_addresses(trace_list, jt_assign_blk_idx, sym_store_list)
                 if not target_addresses: break
-                utils.logger.info(hex(trace_list[-1].address) + ': jump addresses resolved using jump table ' + str(target_addresses))
+                utils.logger.info(hex(trace_list[-1].address) + ': jump addresses resolved using jump table [' + ', '.join(map(lambda x: hex(sym_helper.int_from_sym(x)), target_addresses)) + ']')
                 self._reconstruct_jump_targets(trace_list[-1], dest, target_addresses)
                 return 0
             elif still_tb:
@@ -454,7 +456,7 @@ class CFG(object):
         prev_sym_store = blk.sym_store
         new_inst = self.address_inst_map[new_address]
         new_sym_store = Sym_Store(sym_store.store, prev_sym_store.rip, sym_store.heap_addr, new_inst)
-        res = new_sym_store.state_ith_eq(prev_sym_store) and new_sym_store.aux_mem_eq(prev_sym_store, lib.AUX_MEM)
+        res = new_sym_store.state_ith_eq(prev_sym_store, self.address_inst_map) and new_sym_store.aux_mem_eq(prev_sym_store, self.address_inst_map, lib.AUX_MEM)
         return res
 
 
@@ -487,8 +489,11 @@ class CFG(object):
             # if not new_sym_store.state_ith_eq(prev_sym_store) or not new_sym_store.aux_mem_eq(prev_sym_store, lib.AUX_MEM):
             #     new_sym_store.merge_store(prev_sym_store, self.address_inst_map)
             #     return False, new_sym_store
-            if new_sym_store.state_equal(prev_sym_store): 
+            if new_sym_store.state_equal(prev_sym_store, self.address_inst_map): 
                 utils.logger.info('Block exists: ' + new_inst + ' at address ' + hex(new_address) + ' is visited for ' + str(cnt) + ' times\n')
+                # utils.logger.info(prev_sym_store.pp_store())
+                # utils.logger.info(sym_store.pp_store())
+                # utils.logger.info(new_sym_store.pp_store())
                 return True, blk
             else:
                 self.address_block_map[new_address][0] = cnt + 1

@@ -16,6 +16,7 @@
 
 import os
 import re
+import sys
 from ..common import utils
 from ..symbolic import sym_helper
 
@@ -30,6 +31,11 @@ class ELF_Info(object):
         self.sym_type_table = {}
         self.sym_name_count = {}
         self.address_sym_table = {}
+        self.data_start_addr = sys.maxsize
+        self.data_base_addr = None
+        self.rodata_start_addr = sys.maxsize
+        self.rodata_base_addr = None
+        self.rodata_end_addr = -sys.maxsize - 1
         self.read_elf_info()
 
 
@@ -105,6 +111,8 @@ class ELF_Info(object):
                         is_rodata_sec = True
                         self.rodata_start_addr = section_address
                         self.rodata_base_addr = section_address - section_offset
+                    elif section_name == '.text':
+                        self.code_base_addr = section_address - section_offset
 
 
     # section_name: '.note.gnu.build-i'

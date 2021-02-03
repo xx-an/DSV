@@ -31,8 +31,7 @@ class ELF_Content(object):
             bytes_read = f.read()
             for byte in bytes_read:
                 self.address_bytes_map[idx] = byte
-                idx += 1
-                # print(byte)
+                idx += 1  
         
 
     def read_bytes(self, address, length):

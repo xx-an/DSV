@@ -6119,45 +6119,6 @@
 
 
 
-0x2d40:	mov	rbx, qword ptr [rbp + 0x18]
-0x2d44:	test	rbx, rbx
-0x2d47:	jne	0x2c7d
-
-
-0x2d30:	mov	ebx, 1
-0x2d35:	jmp	0x2c7d
-
-
-0x2d10:	movzx	eax, byte ptr [rbp + 0x11]
-0x2d14:	movzx	edx, byte ptr [rbp + 0x10]
-0x2d18:	cmp	al, dl
-0x2d1a:	jb	0x2d65
-
-
-0x2c50:	movzx	ecx, byte ptr [rbp + 0x10]
-0x2c54:	xor	eax, eax
-0x2c56:	xor	ebx, ebx
-0x2c58:	nop	dword ptr [rax + rax]
-0x2c60:	xor	edx, edx
-0x2c62:	cmp	cl, al
-0x2c64:	sete	dl
-0x2c67:	add	eax, 1
-0x2c6a:	add	rbx, rdx
-0x2c6d:	cmp	eax, 0x100
-0x2c72:	jne	0x2c60
-
-
-0x2cb8:	mov	rax, qword ptr [rsp + 8]
-0x2cbd:	mov	r15d, dword ptr [rbp + 0x10]
-0x2cc1:	xor	r13d, r13d
-0x2cc4:	xor	ebx, ebx
-0x2cc6:	mov	byte ptr [rax + 0x31], 1
-0x2cca:	nop	word ptr [rax + rax]
-0x2cd0:	mov	esi, r13d
-0x2cd3:	mov	edi, r15d
-0x2cd6:	call	0x2a50
-
-
 0x6200:	mov	r13, qword ptr [rbx + 0x10]
 0x6204:	mov	r12, qword ptr [rbx + 8]
 0x6208:	lea	rsi, [rip + 0x26b7]
@@ -6275,6 +6236,45 @@
 0x6182:	mov	edx, 5
 0x6187:	xor	edi, edi
 0x6189:	call	0x1690
+
+
+0x2d40:	mov	rbx, qword ptr [rbp + 0x18]
+0x2d44:	test	rbx, rbx
+0x2d47:	jne	0x2c7d
+
+
+0x2d30:	mov	ebx, 1
+0x2d35:	jmp	0x2c7d
+
+
+0x2d10:	movzx	eax, byte ptr [rbp + 0x11]
+0x2d14:	movzx	edx, byte ptr [rbp + 0x10]
+0x2d18:	cmp	al, dl
+0x2d1a:	jb	0x2d65
+
+
+0x2c50:	movzx	ecx, byte ptr [rbp + 0x10]
+0x2c54:	xor	eax, eax
+0x2c56:	xor	ebx, ebx
+0x2c58:	nop	dword ptr [rax + rax]
+0x2c60:	xor	edx, edx
+0x2c62:	cmp	cl, al
+0x2c64:	sete	dl
+0x2c67:	add	eax, 1
+0x2c6a:	add	rbx, rdx
+0x2c6d:	cmp	eax, 0x100
+0x2c72:	jne	0x2c60
+
+
+0x2cb8:	mov	rax, qword ptr [rsp + 8]
+0x2cbd:	mov	r15d, dword ptr [rbp + 0x10]
+0x2cc1:	xor	r13d, r13d
+0x2cc4:	xor	ebx, ebx
+0x2cc6:	mov	byte ptr [rax + 0x31], 1
+0x2cca:	nop	word ptr [rax + rax]
+0x2cd0:	mov	esi, r13d
+0x2cd3:	mov	edi, r15d
+0x2cd6:	call	0x2a50
 
 
 0x2d4d:	mov	rax, qword ptr [rsp + 8]

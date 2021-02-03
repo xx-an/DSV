@@ -18,10 +18,11 @@ void C()
 } 
 
 void* pick_function (int i) {
-  switch (rand() % 3) {
+  switch (i) {
      case 0: return A;
      case 1: return B;
      case 2: return C;
+     default: return A;
   }
 } 
 
@@ -36,8 +37,6 @@ int min (int x, int y) {
 
 int main(int argc) 
 { 
-    srand(time(NULL));
-    
     void (*array[3]);
     for (int i=0;i<3;i++)
       array[i] = pick_function(i);

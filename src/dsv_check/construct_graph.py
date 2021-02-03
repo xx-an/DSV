@@ -239,7 +239,7 @@ class Construct_Graph(object):
                     # if addr not in disasm_asm.invalid_address_list:
                     jmp_table_entries = utils.extract_content(line_split[1].strip(), '[')
                     jmp_table_entries = jmp_table_entries.split(',')
-                    jump_targets = [int(x.strip()) for x in jmp_table_entries]
+                    jump_targets = [utils.imm_str_to_int(x.strip()) for x in jmp_table_entries]
                     for target in jump_targets:
                         self._add_to_address_entries_map(target, addr)
 

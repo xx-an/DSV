@@ -7247,6 +7247,26 @@
 0x64f9:	je	0x6a90
 
 
+0x6a00:	mov	byte ptr [rax], r14b
+0x6a03:	mov	rbx, r14
+0x6a06:	jmp	0x6724
+
+
+0x6a10:	mov	dword ptr [rax], r14d
+0x6a13:	mov	rbx, r14
+0x6a16:	jmp	0x6724
+
+
+0x6a20:	mov	word ptr [rax], r14w
+0x6a24:	mov	rbx, r14
+0x6a27:	jmp	0x6724
+
+
+0x68d0:	mov	qword ptr [rax], r14
+0x68d3:	mov	rbx, r14
+0x68d6:	jmp	0x6724
+
+
 0x6ee2:	mov	r11d, dword ptr [rdi + 4]
 0x6ee6:	cmp	r11d, 0xaf
 0x6eed:	ja	0x6f9d
@@ -7296,26 +7316,6 @@
 0x6ebb:	ja	0x6f4b
 
 
-0x6a00:	mov	byte ptr [rax], r14b
-0x6a03:	mov	rbx, r14
-0x6a06:	jmp	0x6724
-
-
-0x6a10:	mov	dword ptr [rax], r14d
-0x6a13:	mov	rbx, r14
-0x6a16:	jmp	0x6724
-
-
-0x6a20:	mov	word ptr [rax], r14w
-0x6a24:	mov	rbx, r14
-0x6a27:	jmp	0x6724
-
-
-0x68d0:	mov	qword ptr [rax], r14
-0x68d3:	mov	rbx, r14
-0x68d6:	jmp	0x6724
-
-
 0x6647:	jmp	0x6580
 
 
@@ -7363,6 +7363,14 @@
 
 0x64ff:	cmp	eax, 2
 0x6502:	jne	0x6900
+
+
+0x6724:	mov	r8, qword ptr [r13 + 8]
+0x6728:	add	r13, 0x58
+0x672c:	mov	rcx, qword ptr [r13]
+0x6730:	add	qword ptr [rbp - 0x400], 1
+0x6738:	cmp	rcx, r8
+0x673b:	jne	0x5dd9
 
 
 0x6ef3:	mov	edx, r11d
@@ -7476,14 +7484,6 @@
 0x6f4f:	lea	r11, [rdx + 8]
 0x6f53:	mov	qword ptr [rdi + 8], r11
 0x6f57:	jmp	0x6ecf
-
-
-0x6724:	mov	r8, qword ptr [r13 + 8]
-0x6728:	add	r13, 0x58
-0x672c:	mov	rcx, qword ptr [r13]
-0x6730:	add	qword ptr [rbp - 0x400], 1
-0x6738:	cmp	rcx, r8
-0x673b:	jne	0x5dd9
 
 
 0x65c8:	sub	rsp, 8

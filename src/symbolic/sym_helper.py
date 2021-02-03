@@ -217,14 +217,16 @@ def bvnum_eq(lhs, rhs):
     return res
 
 
-def bitvec_eq(lhs, rhs):
+def bitvec_eq(v_old, v, address_inst_map):
     res = True
-    if isinstance(lhs, BitVecNumRef) and isinstance(rhs, BitVecNumRef):
-        res = bvnum_eq(lhs, rhs)
-    elif isinstance(lhs, BitVecNumRef):
+    if isinstance(v_old, BitVecNumRef) and isinstance(v, BitVecNumRef):
+        res = bvnum_eq(v_old, v)
+    elif isinstance(v_old, BitVecNumRef):
         res = False
-    # elif isinstance(rhs, BitVecNumRef):
-    #     pass
+    # elif isinstance(v, BitVecNumRef):
+    #     v_num = v.as_long()
+    #     if v_num in address_inst_map:
+    #         return False
     # else:
     #     tmp = simplify(rhs - lhs)
     #     if isinstance(tmp, BitVecNumRef):
@@ -237,14 +239,15 @@ def bitvec_eq(lhs, rhs):
 def merge_sym(lhs, rhs, address_inst_map):
     res = rhs
     if isinstance(lhs, BitVecNumRef) and isinstance(rhs, BitVecNumRef):
-        lhs_num = lhs.as_long()
-        rhs_num = rhs.as_long()
-        if rhs_num not in address_inst_map:
-            if not bvnum_eq(lhs, rhs):
-                if lhs_num >= global_var.elf_info.rodata_start_addr and lhs_num < global_var.elf_info.rodata_end_addr:
-                    res = gen_sym(rhs.size())
-                elif rhs_num < global_var.elf_info.rodata_start_addr or rhs_num >= global_var.elf_info.rodata_end_addr:
-                    res = gen_sym(rhs.size())
+        # lhs_num = lhs.as_long()
+        # rhs_num = rhs.as_long()
+        # if rhs_num not in address_inst_map:
+        #     if not bvnum_eq(lhs, rhs):
+        #         if lhs_num >= global_var.elf_info.rodata_start_addr and lhs_num < global_var.elf_info.rodata_end_addr:
+        #             res = gen_sym(rhs.size())
+        #         elif rhs_num < global_var.elf_info.rodata_start_addr or rhs_num >= global_var.elf_info.rodata_end_addr:
+        #             res = gen_sym(rhs.size())
+        res = rhs
     elif isinstance(rhs, BitVecNumRef):
         rhs_num = rhs.as_long()
         if rhs_num not in address_inst_map:
