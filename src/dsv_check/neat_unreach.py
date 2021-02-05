@@ -203,21 +203,22 @@ def main_single(file_name, exec_dir, log_dir, disasm_type, verbose):
         print(print_info)
     return para_list
 
-def main_batch(exec_dir, log_dir, disasm_type, workbook):
+def main_batch(exec_dir, log_dir, disasm_type):
     disasm_files = [os.path.join(dp, f) for dp, dn, filenames in os.walk(log_dir) for f in filenames if
                     f.endswith(disasm_type)]
-    sheet = add_xlws_sheet(workbook, disasm_type)
+    # sheet = add_xlws_sheet(workbook, disasm_type)
     line_no = 1
     for disasm_path in disasm_files:
         try:
             file_name = utils.get_file_name(disasm_path)
             if not (file_name.startswith(('bench-', 'sha')) or file_name in (('sort', 'test-localcharset'))):
                 para_list = main_single(file_name, exec_dir, log_dir, disasm_type, verbose)
-                sheet.write(line_no, 0, file_name)
-                i = 1
-                for para in para_list:
-                    sheet.write(line_no, i, para)
-                    i += 1
+                # sheet.write(line_no, 0, file_name)
+                # i = 1
+                # for para in para_list:
+                #     # sheet.write(line_no, i, para)
+                #     i += 1
+                print(file_name + '\t' + '\t'.join(list(map(lambda x: str(x), para_list))))
                 line_no += 1
         except:
             continue
@@ -260,10 +261,10 @@ if __name__ == '__main__':
         print(args.file_name + '\t' + '\t'.join(list(map(lambda x: str(x), para_list))))
         print(args.file_name + ' & ' + ' & '.join(list(map(lambda x: str(x), para_list))))
     elif args.batch == 1:
-        workbook = create_statistics_xlsw()
-        main_batch(exec_dir, log_dir, args.disasm_type, workbook)
-        xls_path = os.path.join(os.path.dirname(exec_dir), 'statistics.xls')
-        workbook.save(xls_path)
+        # workbook = create_statistics_xlsw()
+        main_batch(exec_dir, log_dir, args.disasm_type)
+        # xls_path = os.path.join(os.path.dirname(exec_dir), 'statistics.xls')
+        # workbook.save(xls_path)
     else:
         workbook = create_statistics_xlsw()
         for disasm_type in ['objdump', 'radare2', 'angr', 'bap', 'ghidra', 'dyninst']:

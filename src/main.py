@@ -155,7 +155,8 @@ if __name__=='__main__':
             exec_path = os.path.join(elf_lib_dir, args.file_name)
             dsv_main(exec_path, disasm_path, disasm_type, args.verbose)
     # 
-    # file_names = ['pinky', 'make-prime-list', 'users', 'cat', 'tsort', 'whoami', 'unlink', 'nproc', 'false', 'paste', 'logname', 'pwd', 'tty', 'mkfifo', 'timeout', 'truncate', 'true', 'nice', 'groups', 'dirname', 'cksum', 'sync', 'dircolors', 'readlink', 'pathchk', 'unexpand', 'kill', 'hostid', 'yes', 'getlimits', 'sum', 'fold', 'tee', 'printenv', 'runcon', 'nohup', 'sleep']
+    # file_names = ['basename', 'expand', 'link', 'mknod', 'uname', 'realpath', 'comm', 'echo', 'dir']
     # dsv_specified(file_names, elf_lib_dir, disasm_lib_dir, disasm_type, args.verbose)
-    #
+    # 
+    
         

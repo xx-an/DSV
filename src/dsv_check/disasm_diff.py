@@ -56,7 +56,10 @@ if __name__ == '__main__':
     parser.add_argument('-l', '--log_dir', default='benchmark/coreutils-objdump', type=str, help='Log file folder name')
     parser.add_argument('-o', '--objdump_dir', default='benchmark/coreutils-objdump', type=str, help='Log file folder name')
     args = parser.parse_args()
-    log_dir = os.path.join(utils.PROJECT_DIR, args.log_dir)
+    log_dir = args.log_dir
+    if args.disasm_type != 'objdump' and 'objdump' in args.log_dir:
+        log_dir = log_dir.replace('objdump', args.disasm_type)
+    log_dir = os.path.join(utils.PROJECT_DIR, log_dir)
     objdump_dir = os.path.join(utils.PROJECT_DIR, args.objdump_dir)
     file_name = args.file_name
     objdump_log_path = os.path.join(objdump_dir, file_name + '.log')
