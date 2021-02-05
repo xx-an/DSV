@@ -239,15 +239,14 @@ def bitvec_eq(v_old, v, address_inst_map):
 def merge_sym(lhs, rhs, address_inst_map):
     res = rhs
     if isinstance(lhs, BitVecNumRef) and isinstance(rhs, BitVecNumRef):
-        # lhs_num = lhs.as_long()
-        # rhs_num = rhs.as_long()
-        # if rhs_num not in address_inst_map:
-        #     if not bvnum_eq(lhs, rhs):
-        #         if lhs_num >= global_var.elf_info.rodata_start_addr and lhs_num < global_var.elf_info.rodata_end_addr:
-        #             res = gen_sym(rhs.size())
-        #         elif rhs_num < global_var.elf_info.rodata_start_addr or rhs_num >= global_var.elf_info.rodata_end_addr:
-        #             res = gen_sym(rhs.size())
-        res = rhs
+        lhs_num = lhs.as_long()
+        rhs_num = rhs.as_long()
+        if rhs_num not in address_inst_map:
+            if not bvnum_eq(lhs, rhs):
+                if lhs_num >= global_var.elf_info.rodata_start_addr and lhs_num < global_var.elf_info.rodata_end_addr:
+                    res = gen_sym(rhs.size())
+                elif rhs_num < global_var.elf_info.rodata_start_addr or rhs_num >= global_var.elf_info.rodata_end_addr:
+                    res = gen_sym(rhs.size())
     elif isinstance(rhs, BitVecNumRef):
         rhs_num = rhs.as_long()
         if rhs_num not in address_inst_map:

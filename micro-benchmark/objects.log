@@ -202,10 +202,9 @@ Block exists: add rsp,0x8 at address 0x5aa is visited for 1 times
 0x8d1: mov eax,0x0
 0x8d6: leave
 0x8d7: ret
-0x8d7: the return address is 0x63a
-0x63a: hlt
-0x63b: nop dword ptr [rax+rax*1+0x0]
+The symbolic execution has been successfully terminated
+
 188
-170
+168
 19
-0.24332475662231445
+0.3091166019439697

@@ -88,7 +88,7 @@ trace back
 0x720: mov eax,dword ptr [rbp-0x14]
 0x71e: ja 0x799
 0x71a: cmp dword ptr [rbp-0x14],0x2a
-0x742: jump addresses resolved using jump table [1945, 1860, 1877, 1894, 1911, 1928]
+0x742: jump addresses resolved using jump table [0x799, 0x744, 0x755, 0x766, 0x777, 0x788]
 0x742: jmp rax
 0x742: jump address is 0x788
 0x788: mov rax,qword ptr [rbp-0x20]
@@ -126,9 +126,8 @@ trace back
 0x7bf: mov eax,0x0
 0x7c4: leave
 0x7c5: ret
-0x7c5: the return address is 0x5aa
-0x5aa: hlt
-0x5ab: nop dword ptr [rax+rax*1+0x0]
+The symbolic execution has been successfully terminated
+
 0x742: jmp rax
 0x742: jump address is 0x777
 0x777: mov rax,qword ptr [rbp-0x20]
@@ -178,9 +177,8 @@ Block exists: mov eax,dword ptr [rbp-0x4] at address 0x7a9 is visited for 1 time
 0x7bf: mov eax,0x0
 0x7c4: leave
 0x7c5: ret
-0x7c5: the return address is 0x5aa
-0x5aa: hlt
-0x5ab: nop dword ptr [rax+rax*1+0x0]
+The symbolic execution has been successfully terminated
+
 0x742: jmp rax
 0x742: jump address is 0x755
 0x755: mov rax,qword ptr [rbp-0x20]
@@ -235,6 +233,6 @@ Block exists: mov rax,qword ptr [rbp-0x20] at address 0x799 is visited for 1 tim
 Block exists: mov eax,dword ptr [rbp-0x4] at address 0x7a9 is visited for 2 times
 
 149
-148
+146
 12
-0.6356420516967773
+0.9217112064361572

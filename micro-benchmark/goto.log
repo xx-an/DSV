@@ -123,8 +123,13 @@ trace back
 0x7df: imul edx
 0x7dd: mov eax,ecx
 0x7d8: mov edx,0x55555556
+0x7d6: mov ecx,eax
+0x650: jmp qword ptr [rip+0x20097a]
+0x7d1: call 0x650
+0x7ca: mov dword ptr [rbp-0x24],0x0
+0x7c6: mov qword ptr [rbp-0x10],rax
 Cannot resolve the jump address m#b of jmp rax at address 0x818
 171
 91
 9
-0.18913626670837402
+0.23978590965270996

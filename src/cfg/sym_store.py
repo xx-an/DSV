@@ -78,14 +78,14 @@ class Sym_Store:
         return result
 
 
-    def merge_store(self, other, address_inst_map):
+    def merge_store(self, old, address_inst_map):
         for k in lib.RECORD_STATE_NAMES:
-            v = self.store[k]
-            other_v = other.store[k]
-            for ki, vi in v.items():
-                val = other_v.get(ki, None)
-                if val is not None:
-                    v[ki] = sym_helper.merge_sym(val, vi, address_inst_map)
+            s = self.store[k]
+            s_old = old.store[k]
+            for ki, v in s.items():
+                v_old = s_old.get(ki, None)
+                if v_old is not None:
+                    s[ki] = sym_helper.merge_sym(v_old, v, address_inst_map)
 
 
     def aux_mem_eq(self, other, address_inst_map, k=lib.AUX_MEM):

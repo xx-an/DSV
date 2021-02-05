@@ -22,12 +22,12 @@ optimized_exceptions = ['ret']
 def _check_bin_eq(address, inst, elf_content):
     bin_rep = utils.generate_inst_bin(inst)
     elf_bytes = elf_content.read_byte_sequence(address, utils.get_bytes_len(bin_rep))
-    if not bin_rep: return False
+    if not bin_rep: 
+        print('The binary representations are invalid for inst: ' + inst + ' at address ' + str(hex(address)))
     if bin_rep != elf_bytes and not utils.check_jmp_with_address(inst) and not inst.startswith('nop') and 'ret' not in inst:
         print('The binary representations are not equivalent for inst: ' + inst + ' at address ' + str(hex(address)))
         print('gcc binary rep: ' + bin_rep)
         print('elf binary rep: ' + elf_bytes)
-        return False
     return True
 
 

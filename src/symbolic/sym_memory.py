@@ -161,6 +161,7 @@ def get_effective_address(store, rip, src, length=lib.DEFAULT_REG_LEN):
 
 
 def set_mem_sym(store, address, sym, length=lib.DEFAULT_REG_LEN):
+    # Randomize the heap region when the address is symbolic
     if not sym_helper.sym_is_int_or_bitvecnum(address):
         for addr in store[lib.MEM]:
             if not sym_helper.sym_is_int_or_bitvecnum(addr):

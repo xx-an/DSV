@@ -38,6 +38,8 @@ INIT_STACK_FRAME_POINTER = 2**48-9
 MAX_DEVIATION = 5
 SEGMENT_REG_INIT_VAL = 0
 
+ASSEMBLY_FILE_NAME = 'test.s'
+
 DISASM_TYPES = ['objdump', 'radare2', 'angr', 'bap', 'ghidra', 'dyninst']
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(os.path.realpath(__file__)))))
@@ -423,14 +425,14 @@ def dump_str_to_file(content, file_path):
         f.write('\n')
 
 
-def generate_inst_bin(line, syntax='intel'):
+def generate_inst_bin(line, file_handler, syntax='intel'):
     res = ''
     try:
         line_str = '.intel_syntax noprefix\n' + line
         if syntax == 'att':
             line_str = '.att_syntax noprefix\n' + line
-        dump_str_to_file(line_str.strip(), 'test.s')
-        cmd = 'gcc -c test.s -o test.o'
+        dump_str_to_file(line_str.strip(), ASSEMBLY_FILE_NAME)
+        cmd = 'gcc -c ' + ASSEMBLY_FILE_NAME + ' -o test.o'
         _ = execute_command(cmd)
         cmd = 'readelf -x .text test.o'
         out = execute_command(cmd)

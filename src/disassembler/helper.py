@@ -59,8 +59,7 @@ remote_addr_pat = re.compile('0x2[0-9a-fA-F]{5}')
 
 
 def disassemble_to_asm(exec_path, disasm_path, disasm_type='objdump'):
-    if os.path.exists(disasm_path): return
-    elif disasm_type == 'radare2':
+    if disasm_type == 'radare2':
         disassemble_radare2(exec_path, disasm_path)
     elif disasm_type == 'objdump':
         cmd = 'objdump -M intel -d ' + exec_path + ' > ' + disasm_path

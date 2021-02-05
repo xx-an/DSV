@@ -217,7 +217,7 @@ trace back
 0x1572: movzx eax,al
 0x156c: jnbe 0x17a6
 0x156a: cmp al,0x48
-0x157c: jump addresses resolved using jump table [5994, 5943, 6054, 5832, 5898, 5928, 5881, 5913, 6158, 6143, 6128, 6113, 6098, 6018]
+0x157c: jump addresses resolved using jump table [0x176a, 0x1737, 0x17a6, 0x16c8, 0x170a, 0x1728, 0x16f9, 0x1719, 0x180e, 0x17ff, 0x17f0, 0x17e1, 0x17d2, 0x1782]
 0x157c: jmp rax
 0x157c: jump address is 0x1782
 0x1782: movzx edi,byte ptr [rbx+0x2]
@@ -313,7 +313,7 @@ trace back
 0x1aa7: lea rdx,[rip+0x2e96]
 0x1aa5: jnbe 0x1b20
 0x1aa3: cmp al,0x25
-0x1ab8: jump addresses resolved using jump table [6848, 6864, 6880, 6896, 6912, 6928, 6944]
+0x1ab8: jump addresses resolved using jump table [0x1ac0, 0x1ad0, 0x1ae0, 0x1af0, 0x1b00, 0x1b10, 0x1b20]
 0x1ab8: jmp rax
 0x1ab8: jump address is 0x1b20
 Block exists: movzx edi,dil at address 0x1b20 is visited for 1 times
@@ -338,53 +338,29 @@ Block exists: movzx edi,dil at address 0x1b20 is visited for 1 times
 0x152a: jnb 0x1820
 0x152a: jump address is 0x1820
 0x1530: lea rcx,[rax+0x1]
-0x1534: mov qword ptr [rdi+0x28],rcx
-0x1538: mov byte ptr [rax],dl
-0x153a: mov rbx,r13
-0x153d: movzx edx,byte ptr [rbx]
-0x1540: lea r13,[rbx+0x1]
-0x1544: test dl,dl
-0x1546: jz 0x1830
-0x1546: jump address is 0x1830
-0x154c: cmp dl,0x5c
-0x154f: jnz 0x1518
-0x154f: jump address is 0x1518
-0x1551: movzx r14d,byte ptr [rbx+0x1]
-0x1556: test r14b,r14b
-0x1559: jz 0x16c8
-0x1559: jump address is 0x16c8
-0x155f: lea eax,[r14-0x30]
-0x1563: lea r13,[rbx+0x2]
-0x1567: mov ecx,r14d
-0x156a: cmp al,0x48
-0x156c: jnbe 0x17a6
-0x156c: jump address is 0x17a6
-Block exists: mov rdi,qword ptr [rip+0x2058db] at address 0x17a6 is visited for 2 times
+Block exists: mov qword ptr [rdi+0x28],rcx at address 0x1534 is visited for 1 times
 
-0x1572: movzx eax,al
-0x1575: movsxd rax,dword ptr [r12+rax*4+0x0]
-0x1579: add rax,r12
-0x157c: jmp rax
-trace back
-0x157c: jmp rax
-0x157c: jump address is 0x1782
-0x1782: movzx edi,byte ptr [rbx+0x2]
-0x1786: mov byte ptr [rsp+0xf],dil
-0x178b: call 0x1440
-0x178b: jump address is 0x1440
-0x1440: jmp qword ptr [rip+0x205b82]
-0x1440: the return address is 0x1790
-0x1790: mov rcx,qword ptr [rax]
-0x1793: movzx eax,byte ptr [rsp+0xf]
-0x1798: test [rcx+rax*2+0x1],0x10
-0x179d: mov rdi,rax
-0x17a0: jnz 0x190e
-0x17a0: jump address is 0x190e
-Block exists: mov rdi,qword ptr [rip+0x2058db] at address 0x17a6 is visited for 2 times
+0x1820: mov esi,ebx
+0x1822: call 0x12a0
+0x1822: jump address is 0x12a0
+0x12a0: jmp qword ptr [rip+0x205c52]
+0x1948: lea r13,[rbx+0x4]
+0x194c: mov ebx,eax
+0x194e: movzx edi,dil
+0x1952: shl ebx,0x4
+0x1955: call 0x1aa0
+0x1955: jump address is 0x1aa0
+0x1955: the return address is 0x195a
+0x195a: lea edx,[rbx+rax*1+0x0]
+0x195d: jmp 0x1518
+0x195d: jump address is 0x1518
+Block exists: movzx ebx,dl at address 0x1518 is visited for 2 times
 
-0x190e: call 0x1aa0
-0x190e: jump address is 0x1aa0
-0x190e: the return address is 0x1913
+0x1ab8: jmp rax
+0x1ab8: jump address is 0x1b00
+0x1b00: mov eax,0xe
+0x1b05: ret
+0x1b05: the return address is 0x1913
 0x1913: movzx edi,byte ptr [rbx+0x3]
 0x1917: mov edx,eax
 0x1919: test [rcx+rdi*2+0x1],0x10
@@ -406,7 +382,42 @@ Block exists: mov rdi,qword ptr [rip+0x205b66] at address 0x151b is visited for 
 0x195a: lea edx,[rbx+rax*1+0x0]
 0x195d: jmp 0x1518
 0x195d: jump address is 0x1518
-Block exists: movzx ebx,dl at address 0x1518 is visited for 3 times
+Block exists: movzx ebx,dl at address 0x1518 is visited for 2 times
+
+0x1ab8: jmp rax
+0x1ab8: jump address is 0x1af0
+0x1af0: mov eax,0xd
+0x1af5: ret
+0x1af5: the return address is 0x1913
+Block exists: movzx edi,byte ptr [rbx+0x3] at address 0x1913 is visited for 2 times
+
+0x1ab8: jmp rax
+0x1ab8: jump address is 0x1ae0
+0x1ae0: mov eax,0xc
+0x1ae5: ret
+0x1ae5: the return address is 0x1913
+Block exists: movzx edi,byte ptr [rbx+0x3] at address 0x1913 is visited for 2 times
+
+0x1ab8: jmp rax
+0x1ab8: jump address is 0x1ad0
+0x1ad0: mov eax,0xb
+0x1ad5: ret
+0x1ad5: the return address is 0x1913
+Block exists: movzx edi,byte ptr [rbx+0x3] at address 0x1913 is visited for 2 times
+
+0x1ab8: jmp rax
+0x1ab8: jump address is 0x1ac0
+0x1ac0: mov eax,0xa
+0x1ac5: ret
+0x1ac5: the return address is 0x1913
+Block exists: movzx edi,byte ptr [rbx+0x3] at address 0x1913 is visited for 2 times
+
+0x1b20: movzx edi,dil
+0x1b24: lea eax,[rdi-0x30]
+0x1b27: ret
+0x1b27: the return address is 0x1913
+0x1913: movzx edi,byte ptr [rbx+0x3]
+Block exists: mov edx,eax at address 0x1917 is visited for 2 times
 
 0x157c: jmp rax
 0x157c: jump address is 0x17d2
@@ -487,7 +498,7 @@ Block exists: mov rdi,qword ptr [rip+0x205b66] at address 0x151b is visited for 
 
 0x157c: jmp rax
 0x157c: jump address is 0x16c8
-Block exists: mov ebx,0x5c at address 0x16c8 is visited for 3 times
+Block exists: mov ebx,0x5c at address 0x16c8 is visited for 2 times
 
 0x157c: jmp rax
 0x157c: jump address is 0x17a6
@@ -510,13 +521,13 @@ Block exists: movzx eax,byte ptr [r13+0x0] at address 0x174c is visited for 1 ti
 0x1754: cmp cl,0x7
 0x1757: jnbe 0x1518
 0x1757: jump address is 0x1518
-Block exists: movzx ebx,dl at address 0x1518 is visited for 3 times
+Block exists: movzx ebx,dl at address 0x1518 is visited for 2 times
 
 0x175d: add r13,0x1
 0x1761: lea edx,[rax+rdx*8-0x30]
 0x1765: jmp 0x1518
 0x1765: jump address is 0x1518
-Block exists: movzx ebx,dl at address 0x1518 is visited for 3 times
+Block exists: movzx ebx,dl at address 0x1518 is visited for 2 times
 
 0x157c: jmp rax
 0x157c: jump address is 0x176a
@@ -562,7 +573,7 @@ Block exists: mov rdi,qword ptr [rip+0x205b66] at address 0x151b is visited for 
 0x1510: mov rbx,qword ptr [r15]
 0x1513: jmp 0x153d
 0x1513: jump address is 0x153d
-Block exists: movzx edx,byte ptr [rbx] at address 0x153d is visited for 3 times
+Block exists: movzx edx,byte ptr [rbx] at address 0x153d is visited for 2 times
 
 0x1939: mov esi,0x20
 0x193e: call 0x12a0
@@ -596,117 +607,6 @@ Block exists: xor eax,eax at address 0x16fd is visited for 2 times
 0x1822: call 0x12a0
 0x1822: jump address is 0x12a0
 0x12a0: jmp qword ptr [rip+0x205c52]
-0x1948: lea r13,[rbx+0x4]
-Block exists: mov ebx,eax at address 0x194c is visited for 1 times
-
-0x1ab8: jmp rax
-0x1ab8: jump address is 0x1b00
-0x1b00: mov eax,0xe
-0x1b05: ret
-0x1b05: the return address is 0x1913
-Block exists: movzx edi,byte ptr [rbx+0x3] at address 0x1913 is visited for 2 times
-
-0x1ab8: jmp rax
-0x1ab8: jump address is 0x1af0
-0x1af0: mov eax,0xd
-0x1af5: ret
-0x1af5: the return address is 0x1913
-Block exists: movzx edi,byte ptr [rbx+0x3] at address 0x1913 is visited for 2 times
-
-0x1ab8: jmp rax
-0x1ab8: jump address is 0x1ae0
-0x1ae0: mov eax,0xc
-0x1ae5: ret
-0x1ae5: the return address is 0x1913
-Block exists: movzx edi,byte ptr [rbx+0x3] at address 0x1913 is visited for 2 times
-
-0x1ab8: jmp rax
-0x1ab8: jump address is 0x1ad0
-0x1ad0: mov eax,0xb
-0x1ad5: ret
-0x1ad5: the return address is 0x1913
-Block exists: movzx edi,byte ptr [rbx+0x3] at address 0x1913 is visited for 2 times
-
-0x1ab8: jmp rax
-0x1ab8: jump address is 0x1ac0
-0x1ac0: mov eax,0xa
-0x1ac5: ret
-0x1ac5: the return address is 0x1913
-Block exists: movzx edi,byte ptr [rbx+0x3] at address 0x1913 is visited for 2 times
-
-0x1b20: movzx edi,dil
-0x1b24: lea eax,[rdi-0x30]
-0x1b27: ret
-0x1b27: the return address is 0x1913
-Block exists: movzx edi,byte ptr [rbx+0x3] at address 0x1913 is visited for 2 times
-
-0x157c: jmp rax
-0x157c: jump address is 0x17d2
-Block exists: mov ebx,0xb at address 0x17d2 is visited for 1 times
-
-0x157c: jmp rax
-0x157c: jump address is 0x17e1
-Block exists: mov ebx,0x9 at address 0x17e1 is visited for 1 times
-
-0x157c: jmp rax
-0x157c: jump address is 0x17f0
-Block exists: mov ebx,0xd at address 0x17f0 is visited for 1 times
-
-0x157c: jmp rax
-0x157c: jump address is 0x17ff
-Block exists: mov ebx,0xa at address 0x17ff is visited for 1 times
-
-0x157c: jmp rax
-0x157c: jump address is 0x180e
-Block exists: mov ebx,0xc at address 0x180e is visited for 1 times
-
-0x157c: jmp rax
-0x157c: jump address is 0x1719
-Block exists: mov ebx,0x1b at address 0x1719 is visited for 1 times
-
-0x157c: jmp rax
-0x157c: jump address is 0x16f9
-Block exists: add rsp,0x18 at address 0x16f9 is visited for 3 times
-
-0x157c: jmp rax
-0x157c: jump address is 0x1728
-Block exists: mov ebx,0x8 at address 0x1728 is visited for 1 times
-
-0x157c: jmp rax
-0x157c: jump address is 0x170a
-Block exists: mov ebx,0x7 at address 0x170a is visited for 1 times
-
-0x157c: jmp rax
-0x157c: jump address is 0x16c8
-Block exists: mov ebx,0x5c at address 0x16c8 is visited for 3 times
-
-0x157c: jmp rax
-0x157c: jump address is 0x17a6
-Block exists: mov rdi,qword ptr [rip+0x2058db] at address 0x17a6 is visited for 2 times
-
-0x157c: jmp rax
-0x157c: jump address is 0x1737
-Block exists: movzx eax,byte ptr [rbx+0x2] at address 0x1737 is visited for 1 times
-
-0x157c: jmp rax
-0x157c: jump address is 0x176a
-Block exists: movzx ecx,byte ptr [rbx+0x2] at address 0x176a is visited for 1 times
-
-0x16c8: mov ebx,0x5c
-0x16cd: jmp 0x151b
-0x16cd: jump address is 0x151b
-Block exists: mov rdi,qword ptr [rip+0x205b66] at address 0x151b is visited for 2 times
-
-0x1518: movzx ebx,dl
-Block exists: mov rdi,qword ptr [rip+0x205b66] at address 0x151b is visited for 2 times
-
-0x1830: add r15,0x8
-Block exists: sub ebp,0x1 at address 0x1834 is visited for 1 times
-
-0x1820: mov esi,ebx
-0x1822: call 0x12a0
-0x1822: jump address is 0x12a0
-0x12a0: jmp qword ptr [rip+0x205c52]
 0x1962: mov esi,0x5c
 0x1967: call 0x12a0
 0x1967: jump address is 0x12a0
@@ -714,7 +614,7 @@ Block exists: sub ebp,0x1 at address 0x1834 is visited for 1 times
 0x190e: call 0x1aa0
 0x190e: jump address is 0x1aa0
 0x190e: the return address is 0x1913
-Block exists: movzx edi,byte ptr [rbx+0x3] at address 0x1913 is visited for 2 times
+Block exists: movzx edi,byte ptr [rbx+0x3] at address 0x1913 is visited for 3 times
 
 0x157c: jmp rax
 0x157c: jump address is 0x17d2
@@ -754,7 +654,7 @@ Block exists: mov ebx,0x7 at address 0x170a is visited for 1 times
 
 0x157c: jmp rax
 0x157c: jump address is 0x16c8
-Block exists: mov ebx,0x5c at address 0x16c8 is visited for 3 times
+Block exists: mov ebx,0x5c at address 0x16c8 is visited for 2 times
 
 0x157c: jmp rax
 0x157c: jump address is 0x17a6
@@ -1016,7 +916,7 @@ trace back
 0x3db6: lea rdx,[rip+0x1b4b]
 0x3db0: jnbe 0x40f0
 0x3dac: cmp r12,0x9
-0x3dc4: jump addresses resolved using jump table [15942, 16088, 16152, 16224, 16304, 16392, 16440, 16544, 15824, 16000]
+0x3dc4: jump addresses resolved using jump table [0x3e46, 0x3ed8, 0x3f18, 0x3f60, 0x3fb0, 0x4008, 0x4038, 0x40a0, 0x3dd0, 0x3e80]
 0x3dc4: jmp rax
 0x3dc4: jump address is 0x3e80
 0x3e80: mov r10,qword ptr [rbx+0x40]
@@ -2194,4 +2094,4 @@ Block exists: mov rdi,qword ptr [rip+0x2059a8] at address 0x16d9 is visited for 
 3330
 970
 38
-3.7848408222198486
+5.941007614135742
