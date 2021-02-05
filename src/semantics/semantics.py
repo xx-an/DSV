@@ -443,8 +443,6 @@ def ext__libc_start_main(store, main_address):
     ext_func_helper.set_regs_sym(store, rip, dests)
     sym_engine.set_sym(store, rip, 'rbp', sym_engine.get_sym(store, main_address, 'rcx'))
     ext_func_helper.clear_flags(store)
-    sym_t = sym_helper.gen_sym_t()
-    push_val(store, sym_t)
     sym_x = sym_helper.gen_sym_x()
     push_val(store, sym_x)
 

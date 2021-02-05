@@ -29,11 +29,10 @@ from ..symbolic import sym_helper
 from ..symbolic import sym_engine
 
 class CFG(object):
-    def __init__(self, sym_table, address_sym_table, address_inst_map, address_next_map, start_address, main_address, disasm_type):
+    def __init__(self, address_sym_table, address_inst_map, address_next_map, start_address, main_address, disasm_type):
         self.block_set = {}
         self.block_stack = []
         self.address_block_map = {}
-        self.sym_table = sym_table
         self.address_sym_table = address_sym_table
         self.start_address = start_address
         self.address_inst_map = address_inst_map
@@ -143,7 +142,7 @@ class CFG(object):
         rip, store = sym_store.rip, sym_store.store
         if ext_func_name.startswith('__libc_start_main'):
             semantics.call(store, rip)
-            next_address = self.sym_table['__libc_csu_init']
+            next_address = self.main_address
             utils.logger.info(hex(address) + ': jump address is ' + sym_helper.string_of_address(next_address))
             semantics.ext__libc_start_main(store, self.main_address)
             self.jump_to_block(block, address, inst, next_address, sym_store, constraint)
@@ -187,10 +186,6 @@ class CFG(object):
             elif sym_helper.is_term_address(new_address):
                 self.jump_to_dummy(block)
                 utils.logger.info('The symbolic execution has been successfully terminated\n')
-            elif sym_helper.is_xterm_address(new_address):
-                next_address = self.main_address
-                utils.logger.info(hex(address) + ': jump address is ' + sym_helper.string_of_address(next_address))
-                self.jump_to_block(block, address, inst, next_address, sym_store, constraint)
             else:
                 if constraint is not None:
                     res = self._check_path_reachability(constraint)

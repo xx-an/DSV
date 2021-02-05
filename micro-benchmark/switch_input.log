@@ -9,58 +9,7 @@
 0x6f6: lea rcx,[rip+0x263]
 0x6fd: lea rdi,[rip+0x15c]
 0x704: call qword ptr [rip+0x2008ce]
-0x704: jump address is 0x960
-0x960: push r15
-0x962: push r14
-0x964: mov r15,rdx
-0x967: push r13
-0x969: push r12
-0x96b: lea r12,[rip+0x20039e]
-0x972: push rbp
-0x973: lea rbp,[rip+0x20039e]
-0x97a: push rbx
-0x97b: mov r13d,edi
-0x97e: mov r14,rsi
-0x981: sub rbp,r12
-0x984: sub rsp,0x8
-0x988: sar rbp,0x3
-0x98c: call 0x658
-0x98c: jump address is 0x658
-0x658: sub rsp,0x8
-0x65c: mov rax,qword ptr [rip+0x20097d]
-0x663: test rax,rax
-0x666: je 0x66a
-0x666: jump address is 0x66a
-0x668: call rax
-0x668: the return address is 0x66a
-Block exists: add rsp,0x8 at address 0x66a is visited for 1 times
-
-0x66a: add rsp,0x8
-0x66e: ret
-0x66e: the return address is 0x991
-0x991: test rbp,rbp
-0x994: je 0x9b6
-0x994: jump address is 0x9b6
-0x996: xor ebx,ebx
-0x998: nop dword ptr [rax+rax*1+0x0]
-0x9a0: mov rdx,r15
-0x9a3: mov rsi,r14
-0x9a6: mov edi,r13d
-0x9a9: call qword ptr [r12+rbx*8]
-0x9a9: the return address is 0x9ad
-0x9ad: add rbx,0x1
-0x9b1: cmp rbp,rbx
-0x9b4: jne 0x9a0
-0x9b4: jump address is 0x9a0
-0x9b6: add rsp,0x8
-0x9ba: pop rbx
-0x9bb: pop rbp
-0x9bc: pop r12
-0x9be: pop r13
-0x9c0: pop r14
-0x9c2: pop r15
-0x9c4: ret
-0x9c4: jump address is 0x860
+0x704: jump address is 0x860
 0x860: push rbp
 0x861: mov rbp,rsp
 0x864: sub rsp,0x20
@@ -89,8 +38,6 @@ Block exists: add rsp,0x8 at address 0x66a is visited for 1 times
 0x8aa: cmp eax,0x2e
 0x8ad: ja 0x87f
 0x8ad: jump address is 0x87f
-Block exists: mov rsi,qword ptr [rbp-0x20] at address 0x87f is visited for 1 times
-
 0x8af: mov eax,eax
 0x8b1: lea rdx,[rax*4+0x0]
 0x8b9: lea rax,[rip+0x18c]
@@ -151,7 +98,7 @@ The symbolic execution has been successfully terminated
 0x952: nop
 0x953: jmp 0x87f
 0x953: jump address is 0x87f
-Block exists: mov rsi,qword ptr [rbp-0x20] at address 0x87f is visited for 1 times
+Block exists: mov rsi,qword ptr [rbp-0x20] at address 0x87f is visited for 2 times
 
 0x8d0: jmp rax
 0x8d0: jump address is 0x8fb
@@ -183,7 +130,7 @@ Block exists: mov rsi,qword ptr [rbp-0x20] at address 0x87f is visited for 1 tim
 0x6b0: jmp qword ptr [rip+0x20090a]
 0x8d0: jmp rax
 0x8d0: jump address is 0x87f
-Block exists: mov rsi,qword ptr [rbp-0x20] at address 0x87f is visited for 1 times
+Block exists: mov rsi,qword ptr [rbp-0x20] at address 0x87f is visited for 2 times
 
 0x8d0: jmp rax
 0x8d0: jump address is 0x8d2
@@ -213,7 +160,10 @@ Block exists: mov rsi,qword ptr [rbp-0x20] at address 0x87f is visited for 1 tim
 0x813: call 0x6b0
 0x813: jump address is 0x6b0
 0x6b0: jmp qword ptr [rip+0x20090a]
-150
-144
-12
-0.9082474708557129
+0x87f: mov rsi,qword ptr [rbp-0x20]
+Block exists: mov eax,dword ptr [rbp-0x14] at address 0x883 is visited for 1 times
+
+107
+103
+8
+0.9186651706695557

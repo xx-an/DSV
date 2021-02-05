@@ -78,7 +78,6 @@ class Disasm_Radare2(Disasm):
                     if INST_REP_PAT.match(line):
                         if prev_inst_str:
                             address, inst, bin_len = self._parse_line(prev_inst_str)
-                            self.valid_address_no += 1
                             self.address_inst_map[address] = inst
                         prev_inst_str = line
                     elif line.startswith(';-'):
@@ -108,7 +107,7 @@ class Disasm_Radare2(Disasm):
     # line: ';-- section..text:'
     def _parse_section_valid(self, line):
         section_name = line.split(';-- section.')[1].split(':')[0]
-        if section_name in (('.init', '.text', '.plt', '.plt.got')):
+        if section_name in (('.text', '.plt', '.plt.got')):
             return True
         else:
             return False

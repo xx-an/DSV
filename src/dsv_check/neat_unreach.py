@@ -246,16 +246,15 @@ if __name__ == '__main__':
     parser.add_argument('-v', '--verbose', default=False, action='store_true', help='Print the starts of unreachable instruction blocks')
     parser.add_argument('-b', '--batch', default=1, type=int, help='Run neat_unreach in batch mode')
     parser.add_argument('-e', '--elf_dir', default='benchmark/coreutils-build', type=str, help='Benchmark folder name')
-    parser.add_argument('-l', '--log_dir', default='litmus-test', type=str, help='Disassembled folder name')
-    parser.add_argument('-s', '--same', default=False, action='store_true', help='Whether elf_dir and log_dir are the same one')
+    parser.add_argument('-l', '--log_dir', default='benchmark/coreutils-objdump', type=str, help='Disassembled folder name')
     args = parser.parse_args()
     utils.make_dir(target_dir)
-    if args.same:
-        log_dir = os.path.join(utils.PROJECT_DIR, args.log_dir)
-        exec_dir = os.path.join(utils.PROJECT_DIR, args.log_dir)
-    else:
-        log_dir = os.path.join(utils.PROJECT_DIR, args.log_dir)
-        exec_dir = os.path.join(utils.PROJECT_DIR, args.elf_dir)
+    disasm_type = args.disasm_type
+    log_dir = args.log_dir
+    if disasm_type != 'objdump' and 'objdump' in args.log_dir:
+        log_dir = log_dir.replace('objdump', disasm_type)
+    log_dir = os.path.join(utils.PROJECT_DIR, log_dir)
+    exec_dir = os.path.join(utils.PROJECT_DIR, args.elf_dir)
     if args.batch == 0:
         para_list = main_single(args.file_name, exec_dir, log_dir, args.disasm_type, args.verbose)
         print(args.file_name + '\t' + '\t'.join(list(map(lambda x: str(x), para_list))))

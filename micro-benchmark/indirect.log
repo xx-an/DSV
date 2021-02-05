@@ -9,58 +9,7 @@
 0x596: lea rcx,[rip+0x233]
 0x59d: lea rdi,[rip+0x167]
 0x5a4: call qword ptr [rip+0x200a36]
-0x5a4: jump address is 0x7d0
-0x7d0: push r15
-0x7d2: push r14
-0x7d4: mov r15,rdx
-0x7d7: push r13
-0x7d9: push r12
-0x7db: lea r12,[rip+0x2005ce]
-0x7e2: push rbp
-0x7e3: lea rbp,[rip+0x2005ce]
-0x7ea: push rbx
-0x7eb: mov r13d,edi
-0x7ee: mov r14,rsi
-0x7f1: sub rbp,r12
-0x7f4: sub rsp,0x8
-0x7f8: sar rbp,0x3
-0x7fc: call 0x528
-0x7fc: jump address is 0x528
-0x528: sub rsp,0x8
-0x52c: mov rax,qword ptr [rip+0x200ab5]
-0x533: test rax,rax
-0x536: je 0x53a
-0x536: jump address is 0x53a
-0x538: call rax
-0x538: the return address is 0x53a
-Block exists: add rsp,0x8 at address 0x53a is visited for 1 times
-
-0x53a: add rsp,0x8
-0x53e: ret
-0x53e: the return address is 0x801
-0x801: test rbp,rbp
-0x804: je 0x826
-0x804: jump address is 0x826
-0x806: xor ebx,ebx
-0x808: nop dword ptr [rax+rax*1+0x0]
-0x810: mov rdx,r15
-0x813: mov rsi,r14
-0x816: mov edi,r13d
-0x819: call qword ptr [r12+rbx*8]
-0x819: the return address is 0x81d
-0x81d: add rbx,0x1
-0x821: cmp rbp,rbx
-0x824: jne 0x810
-0x824: jump address is 0x810
-0x826: add rsp,0x8
-0x82a: pop rbx
-0x82b: pop rbp
-0x82c: pop r12
-0x82e: pop r13
-0x830: pop r14
-0x832: pop r15
-0x834: ret
-0x834: jump address is 0x70b
+0x5a4: jump address is 0x70b
 0x70b: push rbp
 0x70c: mov rbp,rsp
 0x70f: sub rsp,0x20
@@ -166,18 +115,7 @@ Block exists: mov eax,dword ptr [rbp-0x4] at address 0x7a9 is visited for 1 time
 0x772: mov dword ptr [rbp-0x4],eax
 0x775: jmp 0x7a9
 0x775: jump address is 0x7a9
-0x7a9: mov eax,dword ptr [rbp-0x4]
-0x7ac: mov esi,eax
-0x7ae: lea rdi,[rip+0xde]
-0x7b5: mov eax,0x0
-0x7ba: call 0x560
-0x7ba: jump address is 0x560
-0x560: jmp qword ptr [rip+0x200a6a]
-0x560: the return address is 0x7bf
-0x7bf: mov eax,0x0
-0x7c4: leave
-0x7c5: ret
-The symbolic execution has been successfully terminated
+Block exists: mov eax,dword ptr [rbp-0x4] at address 0x7a9 is visited for 1 times
 
 0x742: jmp rax
 0x742: jump address is 0x755
@@ -189,7 +127,7 @@ The symbolic execution has been successfully terminated
 0x761: mov dword ptr [rbp-0x4],eax
 0x764: jmp 0x7a9
 0x764: jump address is 0x7a9
-Block exists: mov eax,dword ptr [rbp-0x4] at address 0x7a9 is visited for 2 times
+Block exists: mov eax,dword ptr [rbp-0x4] at address 0x7a9 is visited for 1 times
 
 0x742: jmp rax
 0x742: jump address is 0x744
@@ -201,7 +139,7 @@ Block exists: mov eax,dword ptr [rbp-0x4] at address 0x7a9 is visited for 2 time
 0x750: mov dword ptr [rbp-0x4],eax
 0x753: jmp 0x7a9
 0x753: jump address is 0x7a9
-Block exists: mov eax,dword ptr [rbp-0x4] at address 0x7a9 is visited for 2 times
+Block exists: mov eax,dword ptr [rbp-0x4] at address 0x7a9 is visited for 1 times
 
 0x742: jmp rax
 0x742: jump address is 0x799
@@ -230,9 +168,9 @@ Block exists: mov rax,qword ptr [rbp-0x20] at address 0x799 is visited for 1 tim
 0x70a: the return address is 0x7a5
 0x7a5: mov dword ptr [rbp-0x4],eax
 0x7a8: nop
-Block exists: mov eax,dword ptr [rbp-0x4] at address 0x7a9 is visited for 2 times
+Block exists: mov eax,dword ptr [rbp-0x4] at address 0x7a9 is visited for 1 times
 
-149
-146
-12
-0.9217112064361572
+106
+105
+8
+0.5885834693908691

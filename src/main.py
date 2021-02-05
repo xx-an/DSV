@@ -33,8 +33,7 @@ def construct_cfg(exec_path, disasm_asm, disasm_type):
     start_address = global_var.elf_info.entry_address
     main_address = global_var.elf_info.main_address
     address_sym_table = global_var.elf_info.address_sym_table
-    sym_table = global_var.elf_info.sym_table
-    cfg = CFG(sym_table, address_sym_table, disasm_asm.address_inst_map, disasm_asm.address_next_map, start_address, main_address, disasm_type)
+    cfg = CFG(address_sym_table, disasm_asm.address_inst_map, disasm_asm.address_next_map, start_address, main_address, disasm_type)
     return cfg
 
 
@@ -98,13 +97,29 @@ def dsv_batch(elf_lib_dir, disasm_lib_dir, disasm_type, verbose=False):
         exec_path = os.path.join(elf_lib_dir, file_name)
         if os.path.exists(exec_path):
             try:
-                print(file_name)
                 dsv_main(exec_path, disasm_path, disasm_type, verbose)
-                time.sleep(30)
+                time.sleep(15)
+                para_list = neat_unreach.main_single(file_name, elf_lib_dir, disasm_lib_dir, disasm_type, False)
+                print(file_name + '\t' + '\t'.join(list(map(lambda x: str(x), para_list))))
             except:
                 close_logger()
-                time.sleep(60)
+                time.sleep(15)
                 continue
+
+
+def dsv_specified(file_names, elf_lib_dir, disasm_lib_dir, disasm_type, verbose=False):
+    for file_name in file_names:
+        exec_path = os.path.join(elf_lib_dir, file_name)
+        disasm_path = os.path.join(disasm_lib_dir, file_name + '.' + disasm_type)
+        try:
+            dsv_main(exec_path, disasm_path, disasm_type, verbose)
+            time.sleep(15)
+            para_list = neat_unreach.main_single(file_name, elf_lib_dir, disasm_lib_dir, disasm_type, False)
+            print(file_name + '\t' + '\t'.join(list(map(lambda x: str(x), para_list))))
+        except:
+            close_logger()
+            time.sleep(15)
+            continue
 
 
 if __name__=='__main__':
@@ -120,8 +135,12 @@ if __name__=='__main__':
     args = parser.parse_args()
     utils.MAX_VISIT_COUNT = args.bmc_bound
     disasm_type = args.disasm_type
-    disasm_lib_dir = os.path.join(utils.PROJECT_DIR, args.log_dir)
+    log_dir = args.log_dir
+    if disasm_type != 'objdump' and 'objdump' in args.log_dir:
+        log_dir = log_dir.replace('objdump', disasm_type)
+    disasm_lib_dir = os.path.join(utils.PROJECT_DIR, log_dir)
     elf_lib_dir = os.path.join(utils.PROJECT_DIR, args.elf_dir)
+    # 
     if args.soundness:
         if args.batch:
             check_soundness_batch(elf_lib_dir, disasm_lib_dir, disasm_type)   
@@ -135,6 +154,8 @@ if __name__=='__main__':
             disasm_path = os.path.join(disasm_lib_dir, args.file_name + '.' + disasm_type)
             exec_path = os.path.join(elf_lib_dir, args.file_name)
             dsv_main(exec_path, disasm_path, disasm_type, args.verbose)
-   
-    
+    # 
+    # file_names = ['pinky', 'make-prime-list', 'users', 'cat', 'tsort', 'whoami', 'unlink', 'nproc', 'false', 'paste', 'logname', 'pwd', 'tty', 'mkfifo', 'timeout', 'truncate', 'true', 'nice', 'groups', 'dirname', 'cksum', 'sync', 'dircolors', 'readlink', 'pathchk', 'unexpand', 'kill', 'hostid', 'yes', 'getlimits', 'sum', 'fold', 'tee', 'printenv', 'runcon', 'nohup', 'sleep']
+    # dsv_specified(file_names, elf_lib_dir, disasm_lib_dir, disasm_type, args.verbose)
+    #
         

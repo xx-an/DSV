@@ -30,7 +30,7 @@ def cnt_init():
 
 def gen_sym(length=lib.DEFAULT_REG_LEN):
     global cnt
-    if cnt == 23 or cnt == 20: cnt += 1
+    if cnt == 23: cnt += 1
     expr = utils.generate_sym_expr(cnt)
     res = BitVec(expr, length)
     cnt += 1
@@ -49,10 +49,6 @@ def gen_seg_reg_sym(name, length=lib.DEFAULT_REG_LEN):
 
 def gen_sym_x(length=lib.DEFAULT_REG_LEN):
     res = BitVec('x', length)
-    return res
-
-def gen_sym_t(length=lib.DEFAULT_REG_LEN):
-    res = BitVec('t', length)
     return res
     
 def bottom(length=lib.DEFAULT_REG_LEN):
@@ -193,9 +189,6 @@ def update_sym_expr(expr, new_expr, rel='or'):
     return res
 
 def is_term_address(address):
-    return is_equal(address, BitVec('t', lib.DEFAULT_REG_LEN))
-
-def is_xterm_address(address):
     return is_equal(address, BitVec('x', lib.DEFAULT_REG_LEN))
 
 
@@ -223,16 +216,6 @@ def bitvec_eq(v_old, v, address_inst_map):
         res = bvnum_eq(v_old, v)
     elif isinstance(v_old, BitVecNumRef):
         res = False
-    # elif isinstance(v, BitVecNumRef):
-    #     v_num = v.as_long()
-    #     if v_num in address_inst_map:
-    #         return False
-    # else:
-    #     tmp = simplify(rhs - lhs)
-    #     if isinstance(tmp, BitVecNumRef):
-    #         tmp = tmp.as_long()
-    #         if tmp != 0:
-    #             res = False
     return res
 
 
@@ -251,14 +234,6 @@ def merge_sym(lhs, rhs, address_inst_map):
         rhs_num = rhs.as_long()
         if rhs_num not in address_inst_map:
             res = gen_sym(rhs.size())
-    # elif isinstance(lhs, BitVecNumRef):
-    #     pass
-    # else:
-    #     tmp = simplify(rhs - lhs)
-    #     if isinstance(tmp, BitVecNumRef):
-    #         tmp = tmp.as_long()
-    #         if tmp != 0:
-    #             res = gen_sym(rhs.size())
     return res
 
 
