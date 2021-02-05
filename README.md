@@ -2,9 +2,8 @@
 
 DSV is a tool that automatically validates the soundness of a disassembly process.
 
-Project structure:
+DSV structure:
 
-DSV
     benchmark
 
     litmus-test
