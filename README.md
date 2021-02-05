@@ -5,42 +5,20 @@ DSV is a tool that automatically validates the soundness of a disassembly proces
 Project structure:
 
 DSV
+    benchmark
 
-|--benchmark
+    litmus-test
 
-|   |--coreutils-build
+    micro-benchmark
 
-|   |--coreutils-objdump
+    src
 
-|   |--coreutils-radare2
+    lib
 
-|   |--coreutils-angr
+    LICENSE
 
-|   |--coretuils-bap
+    README.md
 
-|   |--coretuils-ghidra
-
-|   |--coreutils-dyninst
-
-|--litmus-test
-
-|--micro-benchmark
-
-|--src
-
-|--lib
-
-|   |--ghidra_9.0.4
-
-|   |--disassemble_dyninst
-
-|   |--disassemble_dyninst.cc
-
-|--LICENSE
-
-|--README.md
-
-|--test.s
 
 
 
