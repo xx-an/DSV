@@ -17,8 +17,6 @@ DSV
 
     LICENSE
 
-    README.md
-
 
 
 
@@ -69,25 +67,21 @@ Note:
 
 
 Apply DSV to construct a CFG on a specific file disasembled by a disassembler and get the information regarding # of instructions and unreachable instructions ...
-
-$ python -m src.main -e benchmark/coreutils-build -l benchmark/coreutils-radare2 -t radare2 -f basename
+    $ python -m src.main -e benchmark/coreutils-build -l benchmark/coreutils-radare2 -t radare2 -f basename
 
 
 
 Apply DSV to validate the soundness and report all the incorrectly disassembled instructions after the CFG is constructed
-
-$ python -m src.main -e benchmark/coreutils-build -l benchmark/coreutils-radare2 -t radare2 -f basename -s
+    $ python -m src.main -e benchmark/coreutils-build -l benchmark/coreutils-radare2 -t radare2 -f basename -s
 
 
 
 Use DSV to build up the CFG for all the files under a directory
-
-$ python -m src.main -e benchmark/coreutils-build -l benchmark/coreutils-radare2 -t radare2 -b
+    $ python -m src.main -e benchmark/coreutils-build -l benchmark/coreutils-radare2 -t radare2 -b
 
 
 
 Use DSV to validate the soundness of all the files under a directory after the CFGs are constructed
-
-$ python -m src.main -e benchmark/coreutils-build -l benchmark/coreutils-radare2 -t radare2 -b -s
+    $ python -m src.main -e benchmark/coreutils-build -l benchmark/coreutils-radare2 -t radare2 -b -s
 
 
