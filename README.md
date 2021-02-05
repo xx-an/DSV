@@ -54,8 +54,7 @@ Prerequisites:
 
       |-- Execute the following command under DSV/lib directory
 
-      |-- $ g++ -std=c++0x -o disassemble_dyninst disassemble_dyninst.cc -L/usr/local/share/dyninst/lib -I/usr/local/share/dyninst/include -lparseAPI -linstructionAPI -
-lsymtabAPI -lsymLite -ldynDwarf -ldynElf -lcommon -lelf -ldwarf -lboost_system
+      |-- $ g++ -std=c++0x -o disassemble_dyninst disassemble_dyninst.cc -L/usr/local/share/dyninst/lib -I/usr/local/share/dyninst/include -lparseAPI -linstructionAPI -lsymtabAPI -lsymLite -ldynDwarf -ldynElf -lcommon -lelf -ldwarf -lboost_system
 
 
 
