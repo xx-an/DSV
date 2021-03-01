@@ -40,7 +40,7 @@ def get_sym(store, rip, src, length=lib.DEFAULT_REG_LEN):
         if src.endswith(']'):
             val = sym_memory.get_effective_address(store, rip, src)
         else:
-            val = get_sym(store, rip, src, length)
+            val = get_sym(store, rip, src)
         address = simplify(seg_reg_val + val)
         res = sym_memory.get_memory_val(store, address, length)
     elif src.endswith(']'): # byte ptr [rbx+rax*1]
