@@ -21,7 +21,7 @@ from ..disassembler import helper
 
 
 label_address_pattern = re.compile('^[0-9a-f]+ <[A-Za-z_@.0-9]+>:')
-address_inst_pattern = re.compile('^[ ]+[0-9a-f]+:[0-9a-f\t ]+')
+address_inst_pattern = re.compile('^[0-9a-f]+:[0-9a-f\t ]+')
 
 class Disasm_Objdump(object):
     def __init__(self, disasm_path):

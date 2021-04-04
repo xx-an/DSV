@@ -70,7 +70,7 @@ class Disasm_Ghidra(Disasm):
 
     def _format_arg(self, address, inst_name, arg, rip):
         res = helper.convert_to_hex_rep(arg)
-        res = helper.normalize_angr_ghidra_arg(res)
+        res = helper.normalize_arg_byte_len_rep(res)
         if res.endswith(']'):
             res = res.replace('+ -', '- ')
         res = helper.rewrite_absolute_address_to_relative(res, rip)
@@ -79,8 +79,7 @@ class Disasm_Ghidra(Disasm):
             # inst_name_1 = inst_name.split('.', 1)[0]
             # byte_len_rep = helper.BYTE_REP_PTR_MAP[inst_name_1[-1]]
             res = ' [' + res + ']'
-        if res in (('st0', 'st1', 'st2', 'st3')):
-            res = 'st(' + res[-1] + ')'
+        res = helper.modify_st_rep(res)
         return res
 
 

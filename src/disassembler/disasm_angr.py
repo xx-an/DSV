@@ -67,7 +67,7 @@ class Disasm_Angr(Disasm):
 
     def _format_arg(self, address, inst_name, arg):
         res = helper.convert_to_hex_rep(arg)
-        res = helper.normalize_angr_ghidra_arg(res)
+        res = helper.normalize_arg_byte_len_rep(res)
         return res
 
     def _rewrite_inst(self, inst):

@@ -38,7 +38,10 @@ BYTE_LEN_REPS = {
 }
 
 # INVALID_SECTION_LABELS = {'_fini', '__libc_csu_fini', 'frame_dummy', 'register_tm_clones', 'deregister_tm_clones', '__do_global_dtors_aux'}
-INVALID_SECTION_LABELS = {'_init', '_fini', '__libc_csu_init', '__libc_csu_fini', 'frame_dummy', 'register_tm_clones', 'deregister_tm_clones', '__do_global_dtors_aux'}
+INVALID_SECTION_LABELS = {'_init', '_fini', '__libc_csu_init', '__libc_csu_fini', 
+'frame_dummy', 'register_tm_clones', 'deregister_tm_clones', '__do_global_dtors_aux'}
+
+VALID_SECTION_NAMES = {'.text', }
 
 BYTE_REP_PTR_MAP = {
     'q': 'qword ptr',
@@ -449,18 +452,29 @@ def norm_objdump_arg(name, arg):
         res = 'st(0)'
     return res
 
-
-def normalize_radare2_arg(inst_name, arg):
+def modify_st_rep(arg):
     res = arg
-    if inst_name.startswith(('cmpsb', 'scasb')) and ']' in arg:
-        res = arg.rsplit(' ', 1)[1].strip()
-    elif arg.endswith(']') and ' ptr ' not in arg:
+    if arg in (('st0', 'st1', 'st2', 'st3')):
+        res = 'st(' + arg[-1] + ')'
+    return res
+
+def add_ptr_suffix_arg(arg):
+    res = arg
+    if arg.endswith(']') and ' ptr ' not in arg:
         b_len_rep = arg.split(' ', 1)[0].strip()
         if b_len_rep in BYTE_LEN_REPS:
             res = re.sub(b_len_rep, BYTE_LEN_REPS[b_len_rep] + ' ptr', arg)
     return res
 
-def normalize_angr_ghidra_arg(arg):
+def normalize_radare2_arg(inst_name, arg):
+    res = arg
+    if inst_name.startswith(('cmpsb', 'scasb')) and ']' in arg:
+        res = arg.rsplit(' ', 1)[1].strip()
+    else:
+        res = add_ptr_suffix_arg(arg)
+    return res
+
+def normalize_arg_byte_len_rep(arg):
     res = arg
     if arg.endswith(']'):
         b_len_rep = arg.split(' ', 1)[0].strip()

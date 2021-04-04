@@ -22,6 +22,7 @@ from .disasm_radare2 import Disasm_Radare2
 from .disasm_angr import Disasm_Angr
 from .disasm_bap import Disasm_Bap
 from .disasm_dyninst import Disasm_Dyninst
+from .disasm_hopper import Disasm_Hopper
 
 class Disasm_Factory(object):
     def __init__(self, disasm_path, exec_path=None, disasm_type='objdump'):
@@ -44,5 +45,7 @@ class Disasm_Factory(object):
                 return Disasm_Bap(self.disasm_path)
             elif self.disasm_type == 'dyninst':
                 return Disasm_Dyninst(self.disasm_path)
+            elif self.disasm_type == 'hopper':
+                return Disasm_Hopper(self.disasm_path)
         return None
 

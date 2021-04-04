@@ -425,7 +425,7 @@ def dump_str_to_file(content, file_path):
         f.write('\n')
 
 
-def generate_inst_bin(line, file_handler, syntax='intel'):
+def generate_inst_bin(line, syntax='intel'):
     res = ''
     try:
         line_str = '.intel_syntax noprefix\n' + line

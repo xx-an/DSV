@@ -1,2 +1,2 @@
 .intel_syntax noprefix
-push rsp
+call 0x3290

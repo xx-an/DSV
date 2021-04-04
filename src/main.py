@@ -94,6 +94,7 @@ def dsv_batch(elf_lib_dir, disasm_lib_dir, disasm_type, verbose=False):
     disasm_files = [os.path.join(dp, f) for dp, dn, filenames in os.walk(disasm_lib_dir) for f in filenames if f.endswith(disasm_type)]
     for disasm_path in disasm_files:
         file_name = utils.get_file_name(disasm_path)
+        print(file_name)
         exec_path = os.path.join(elf_lib_dir, file_name)
         if os.path.exists(exec_path):
             try:
